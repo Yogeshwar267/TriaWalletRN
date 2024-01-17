@@ -1,0 +1,45 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Cabrion-Bold.ttf",
+      "sha1": "1d51a7c3b3c1e3b0721879f489229ba2bf6b7678"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-BoldItalic.ttf",
+      "sha1": "24522da26a9791dd3f0808a1ac66e0e27af3506a"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-Italic.ttf",
+      "sha1": "3184a3d911218a0cf99bce5a933945a89effd1e1"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-Light.ttf",
+      "sha1": "e97a8c4a0d9a387e818dde7be015c21ce615a193"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-LightItalic.ttf",
+      "sha1": "41cdf22d70236d51694c7f2c84f0103433db4786"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-Medium.ttf",
+      "sha1": "6d12e3e2728aa7f12d121b260fafaec8970c8ab2"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-MediumItalic.ttf",
+      "sha1": "a3fbd7a8689a5a78621a015847aea5a447afa217"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-Regular.ttf",
+      "sha1": "1507138b20c9c7e57943abedf51eefff668c0054"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-SemiBold.ttf",
+      "sha1": "de9566a53f871b02045f2e74b653dd56b9da3ec4"
+    },
+    {
+      "path": "src/assets/fonts/Cabrion-SemiBoldItalic.ttf",
+      "sha1": "adac6579fbfd99bab6a36ab07ae58e4d9073d1df"
+    }
+  ]
+}

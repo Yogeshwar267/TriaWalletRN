@@ -22,11 +22,12 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
@@ -34,8 +35,23 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>SplashScreenDuration</key>
+	<integer>2000</integer>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Cabrion-Bold.ttf</string>
+		<string>Cabrion-BoldItalic.ttf</string>
+		<string>Cabrion-Italic.ttf</string>
+		<string>Cabrion-Light.ttf</string>
+		<string>Cabrion-LightItalic.ttf</string>
+		<string>Cabrion-Medium.ttf</string>
+		<string>Cabrion-MediumItalic.ttf</string>
+		<string>Cabrion-Regular.ttf</string>
+		<string>Cabrion-SemiBold.ttf</string>
+		<string>Cabrion-SemiBoldItalic.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>LaunchScreen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

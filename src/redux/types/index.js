@@ -1,0 +1,9 @@
+const ActionTypes = {
+  CHANGE_THEME: 'CHANGE_THEME',
+  SET_DEFAULT_THEME: 'SET_DEFAULT_THEME',
+
+  LOGIN: 'LOGIN',
+  SET_USER_DETAILS: 'SET_USER_DETAILS',
+};
+
+export default ActionTypes;

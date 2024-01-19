@@ -83,6 +83,11 @@ export const TEXT_STYLES = {
     lineHeight: _scaleText(46).fontSize,
     // fontFamily: "Mukta-Regular",
   },
+  REGULAR30: {
+    ..._scaleText(30),
+    lineHeight: _scaleText(36).fontSize,
+    // fontFamily: "Mukta-Regular",
+  },
   FI1: {
     fontFamily: "Inter-Regular",
     fontSize: _scaleText(12).fontSize,

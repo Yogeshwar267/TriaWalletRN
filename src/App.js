@@ -2,10 +2,11 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { store, persistor } from './store';
+import { store,persistor } from './redux/store';
 import ApplicationNavigator from './navigators/Application';
 import './translations';
-import { View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
+import KeyboardAwareView from './components/molecules/keyboardAwareView';
 const App = () => (
 <Provider store={store}>
     {/**
@@ -16,8 +17,10 @@ const App = () => (
      * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
      */}
     <PersistGate loading={null} persistor={persistor}>
-      <View style={{flex: 1}}>
+      <View style={{flex: 1,backgroundColor: "black"}}>
+      <KeyboardAwareView>
       <ApplicationNavigator />
+      </KeyboardAwareView>
       </View>
     </PersistGate>
   </Provider>);

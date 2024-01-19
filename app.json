@@ -1,4 +1,9 @@
 {
   "name": "TriaWallet",
-  "displayName": "TriaWallet"
+  "displayName": "TriaWallet",
+  "androidStatusBar": {
+    "backgroundColor": "#000000",
+    "softwareKeyboardLayoutMode": "pan"
+  }
 }
+

@@ -1,8 +1,7 @@
 //import liraries
 import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import { Dimensions} from 'react-native';
 
-// create a component
 import {
   Defs,
   Stop,
@@ -11,30 +10,35 @@ import {
   Path,
 } from 'react-native-svg';
 
-export function RadialGradient({color="#7F43FF"}) {
+export function RadialGradient({ color = "#7F43FF" }) {
   const H = Dimensions.get('window').height;
   const W = Dimensions.get('window').width;
+
+  const gradientTransform = `translate(${W/2.5} -${H/12}) scale(${W} ${H})`;
+
   return (
-    <Svg height={H} width={W} style={{ flex: 1,opacity:0.5 ,position:"absolute"}}>
-    <Path
-      fill="url(#grad)"
-    />
-   <Defs>
+    <Svg height={H} width={W} style={{ flex: 1, opacity: 0.4, position: "absolute" }}>
+      <Defs>
         <SVGRadialGradient
           id="grad"
-          cx="0.9"
-          cy="0.9"
-          r="1"
+          cx="0.5"
+          cy="0.5"
+          r="0.5"
           gradientUnits="userSpaceOnUse"
-          gradientTransform="translate(187.5 50.5) rotate(360) scale(180 350.061)"
+          gradientTransform={gradientTransform}
         >
-          <Stop stopColor={color}/>
+          <Stop stopColor={color} />
           <Stop stopColor={'black'} offset={1} />
         </SVGRadialGradient>
       </Defs>
-  </Svg>
+      <Path
+        fill="url(#grad)"
+        d={`M0,0 L${W},0 L${W},${H} L0,${H}Z`}
+      />
+    </Svg>
   );
 }
+
 
 export default RadialGradient;
 

@@ -2,47 +2,38 @@ import {
   Animated,
   Dimensions,
   Platform,
-  Pressable,
-  Text,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
-import {STRINGS} from '../../shared';
-import {TEXT_STYLES} from '../../shared/constants/styles';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {CREATE_PROFILE} from '../../shared';
 import {_scaleText} from '../../shared/services/utility';
 import styles from './styles';
-import LinearGradient from 'react-native-linear-gradient';
-import {ICONS} from '../../shared/constants/icons';
-import Profile from './Profile';
 import {
   useNavigation,
-  useFocusEffect,
-  useIsFocused,
 } from '@react-navigation/native';
 import {NAVIGATION_SCREENS} from '../../navigators/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUserDetails} from '../../redux/actions/common';
-import CustomTextField from '../../components/atoms/CustomTextField';
-import Carousel from '../../components/atoms/CustomCorousel';
 import {profileConfigurations} from './constants';
-import {SheetManager} from 'react-native-actions-sheet';
 import AvatarActionSheet from './ActionSheet';
 import Radial from 'react-native-radial-gradient';
 import RadialGradient from '../../components/molecules/radialGradient';
 import DropShadow from 'react-native-drop-shadow';
 import ProfileDots from '../../components/atoms/CustomCorousel/ProfileDots';
+import customStyling from '../../shared/services/styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const AvatarSelection = ({reRender = false, setSelected}) => {
+const AvatarSelection = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
-  const actionSheet = useRef();
   const H = Dimensions.get('window').height;
   const W = Dimensions.get('window').width;
   const [selectedValue, setSelectedValue] = useState(0);
   const [opacity, setOpacity] = useState(0.6);
   const [increment, setIncrement] = useState(-0.01);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,8 +61,7 @@ const AvatarSelection = ({reRender = false, setSelected}) => {
         avatar: profileConfigurations[selectedValue],
       }),
     );
-    actionSheet.current.hide();
-    setSelected(prev => prev + 1);
+    navigation.navigate(NAVIGATION_SCREENS.IDENTITY_SELECTION)
   };
 
   useEffect(() => {
@@ -87,27 +77,6 @@ const AvatarSelection = ({reRender = false, setSelected}) => {
       useNativeDriver: true,
     }).start();
   }, [fadeAnim, buttonAnim]);
-
-  const animatedButtonStyle = {
-    opacity: buttonAnim,
-    transform: [
-      {
-        translateY: buttonAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [50, 0],
-        }),
-      },
-    ],
-  };
-
-  useEffect(() => {
-    if (
-      !actionSheet.current.isOpen() &&
-      (actionSheet.current?.show || !!reRender)
-    ) {
-      actionSheet.current.show();
-    }
-  }, [actionSheet.current, reRender]);
 
   const renderItem = item => {
     return (
@@ -132,8 +101,33 @@ const AvatarSelection = ({reRender = false, setSelected}) => {
     );
   };
 
+  const renderMiddleHeader = () => (
+    <View style={customStyling.paginationContainer}>
+      {CREATE_PROFILE.map((_, index) => (
+        <View
+          key={index}
+          style={[customStyling.paginationDot(index === 0)]}
+          //   onPress={() => handlePageChange(index)}
+        />
+      ))}
+    </View>
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: 'center',
+      headerShown: true,
+      headerTransparent: true,
+      headerTitle: () => renderMiddleHeader(),
+      headerStyle: {
+        backgroundColor: '#0000',
+        // height:50
+      },
+    });
+  }, [navigation]);
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={customStyling.containerWithHeader}>
       <RadialGradient color="#7F43FF" />
       <Radial
         style={{width: W, height: H, position: 'absolute'}}
@@ -146,11 +140,12 @@ const AvatarSelection = ({reRender = false, setSelected}) => {
         {renderItem(profileConfigurations[selectedValue])}
       </Animated.View>
       <AvatarActionSheet
-        setRef={ref => (actionSheet.current = ref)}
         setSelectedValue={setSelectedValue}
         onNext={onNext}
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

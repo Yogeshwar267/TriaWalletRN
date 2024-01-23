@@ -1,7 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import {_scaleText, isIpad} from '../../shared/services/utility';
-import {TEXT_STYLES} from '../../shared/constants/styles';
-import { isTablet } from 'react-native-device-info';
 
 const H = Dimensions.get('window').height;
 const W = Dimensions.get('window').width;
@@ -10,10 +8,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: _scaleText(40).fontSize
   },
   actionContainer: {
-    minHeight: H * ( isIpad() ? 0.35 :Platform.OS == 'android' ? 0.465 : 0.475),
+    minHeight: Dimensions.get("screen").height * (isIpad() ? 0.35 : 0.4),
     backgroundColor: 'black',
     alignItems: 'center',
   },
@@ -26,7 +23,6 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: _scaleText(25).fontSize,
   },
   whiteText: {
     color: '#fff',
@@ -135,14 +131,9 @@ const styles = StyleSheet.create({
   },
   secondaryTextInput: {
     color: 'rgba(255,255,255, 0.8)',
-    // fontWeight: '5',
     fontFamily: 'Cabrion-Bold',
-    // borderRadius:_scaleText(12).fontSize,
-    // alignItems: 'center',
     justifyContent: 'center',
-    // height:"100%",
     minWidth: '85%',
-    // borderColor:"white",borderWidth:1
   },
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
@@ -173,8 +164,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   logoContainer: {
-    width: 50, // Adjust the size of logos here
-    height: 50, // Adjust the size of logos here
+    width: 50, 
+    height: 50, 
   },
   avatarButton: {
     flexDirection: 'row',
@@ -200,11 +191,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    position:"absolute",
-    marginTop: _scaleText(H * ( isIpad() ? 0.18 : isTablet() ? 0.24 : Platform.OS == 'android' ? 0.26: 0.21)).fontSize,
-    marginBottom: _scaleText(0).fontSize,
-    // borderColor:"white",borderWidth:1
-
+    marginBottom: _scaleText(20).fontSize
   },
   buttonSubContainer: {
     alignSelf: 'center',
@@ -229,9 +216,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-
-    // borderWidth: 1,
-    // borderColor: 'green',
   },
   containerProfile: {
     justifyContent: 'center',
@@ -263,30 +247,25 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     width: W,
-    height: H * 0.5,
+    height: H * (Platform.OS == "ios" ? 0.47 : 0.494),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
   },
   profileSvg: {
     width: W,
-    height: H * 0.4,
+    height: H * (Platform.OS == "ios" ? 0.47 : 0.494),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    top:0,
-    position:"absolute"
+    bottom: _scaleText(Platform.OS == 'android' ? 10 : 25).fontSize,
+    position: 'absolute',
   },
   colorContainer : {
     flexDirection:"row",
-    justifyContent:"space-evenly",
+    justifyContent:"center",
     alignItems:"center",
-    justifyContent:"flex-start",
-    position:"absolute",
-    marginRight: _scaleText(30).fontSize,
-    top: _scaleText(H *  (isIpad() ? 0.06:  0.10)).fontSize,
-    right: _scaleText(W * (isIpad() ? 0.32 : isTablet() ? 0.28 : Platform.OS == 'android' ? 0.26 : 0.20)).fontSize
-    // paddingHorizontal: _scaleText(20).fontSize,
+    paddingVertical: _scaleText(Platform.OS == 'android' ? 15 : 5).fontSize,
   }
 });
 

@@ -1,14 +1,16 @@
 import {Animated, Pressable, Text, View, Platform} from 'react-native';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import {STRINGS} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
-import {_scaleText} from '../../shared/services/utility';
+import {_scaleText, isIpad} from '../../shared/services/utility';
 import styles from './styles';
 import RadialGradient from '../../components/molecules/radialGradient';
 import {ICONS} from '../../shared/constants/icons';
 import ScreenAnimation from './animation';
 import {useNavigation} from '@react-navigation/native';
 import {NAVIGATION_SCREENS} from '../../navigators/constants';
+import {useTheme} from '../../hooks';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const renderButtonComponent = (data, animatedButtonStyle) => {
   return data.map((button, index) => {
@@ -45,6 +47,7 @@ const LoginSignup = () => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
+  const {Layout} = useTheme();
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -60,99 +63,115 @@ const LoginSignup = () => {
     }).start();
   }, [fadeAnim, buttonAnim]);
 
-  const animatedButtonStyle = {
-    opacity: buttonAnim,
-    transform: [
-      {
-        translateY: buttonAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [50, 0],
-        }),
-      },
-    ],
-  };
+  const animatedButtonStyle = useMemo(() => {
+    return {
+      opacity: buttonAnim,
+      transform: [
+        {
+          translateY: buttonAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [50, 0],
+          }),
+        },
+      ],
+    };
+  }, [buttonAnim]);
 
   const renderButtons = [
     {
       id: 'G1',
       title: STRINGS.GOOGLE,
-      icon: ICONS.GOOGLE(_scaleText(20).fontSize),
+      icon: ICONS.GOOGLE(
+        _scaleText(Platform.OS == 'android' ? 30 : 20).fontSize,
+      ),
     },
     {
       id: 'G2',
       title: STRINGS.APPLE,
-      icon: ICONS.APPLE(_scaleText(20).fontSize),
+      icon: ICONS.APPLE(
+        _scaleText(Platform.OS == 'android' ? 30 : 20).fontSize,
+      ),
     },
     {
       id: 'G3',
       title: STRINGS.EMAIL_PHONE,
-      icon: ICONS.EMAIL(_scaleText(20).fontSize),
+      icon: ICONS.EMAIL(
+        _scaleText(Platform.OS == 'android' ? 30 : 20).fontSize,
+      ),
     },
     {
       id: 'G4',
       title: STRINGS.OTHERS,
-      icon: ICONS.OTHER_LOGIN(_scaleText(35).fontSize),
+      icon: ICONS.OTHER_LOGIN(
+        _scaleText(Platform.OS == 'android' ? 45 : 35).fontSize,
+      ),
     },
   ];
 
   return (
-    <View style={styles.container}>
-      <RadialGradient color="#7F43FF" />
+    <SafeAreaView style={[Layout.fill, {backgroundColor: 'black'}]}>
+      <View style={styles.container}>
+        <RadialGradient color="#7F43FF" />
 
-      <Animated.View style={[styles.subContainer, {opacity: fadeAnim}]}>
-        <Text style={[styles.whiteText, styles.fontLight, TEXT_STYLES.BODY2]}>
-          {STRINGS.EXPERIENCE_SPEED}
-        </Text>
-        <Text style={[styles.whiteText, TEXT_STYLES.REGULAR30]}>
-          {STRINGS.QUICK_EASY}
-        </Text>
-      </Animated.View>
-      <Animated.View style={[styles.animationContainer, {opacity: fadeAnim}]}>
-        <ScreenAnimation />
-      </Animated.View>
-
-      <View style={styles.buttonContainer}>
-        <View style={styles.buttonSubContainer}>
-          <Animated.View style={[animatedButtonStyle]}>
-            <Pressable
-              key={'G0'}
-              onPress={() => {}}
-              style={({pressed}) => [
-                styles.primaryButton,
-                {
-                  opacity: pressed ? 0.8 : 1,
-                },
-              ]}>
-              <Text style={[TEXT_STYLES.FI2, styles.buttonText]}>
-                {STRINGS.SIGNUP}
-              </Text>
-            </Pressable>
-          </Animated.View>
-        </View>
-        {renderButtonComponent(renderButtons, animatedButtonStyle)}
-        <Pressable
-          onPress={() =>
-            navigation.navigate(NAVIGATION_SCREENS.CREATE_USERNAME)
-          }
-          style={({pressed}) => [
-            {
-              opacity: pressed ? 0.8 : 1,
-              marginVertical: _scaleText(Platform.OS == 'android' ? 15 : 10)
-                .fontSize,
-            },
+        <Animated.View style={[styles.subContainer, {opacity: fadeAnim}]}>
+          <Text style={[styles.whiteText, styles.fontLight, TEXT_STYLES.BODY2]}>
+            {STRINGS.EXPERIENCE_SPEED}
+          </Text>
+          <Text style={[styles.whiteText, TEXT_STYLES.REGULAR30]}>
+            {STRINGS.QUICK_EASY}
+          </Text>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.animationContainer,
+            {opacity: fadeAnim, ...(isIpad() ? {marginTop: 30} : {})},
           ]}>
-          <Animated.Text
-            style={[
-              TEXT_STYLES.FI2,
-              styles.whiteText,
-              styles.secondaryText,
-              animatedButtonStyle,
+          <ScreenAnimation />
+        </Animated.View>
+
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonSubContainer}>
+            <Animated.View style={[animatedButtonStyle]}>
+              <Pressable
+                key={'G0'}
+                onPress={() => {}}
+                style={({pressed}) => [
+                  styles.primaryButton,
+                  {
+                    opacity: pressed ? 0.8 : 1,
+                  },
+                ]}>
+                <Text style={[TEXT_STYLES.FI2, styles.buttonText]}>
+                  {STRINGS.SIGNUP}
+                </Text>
+              </Pressable>
+            </Animated.View>
+          </View>
+          {renderButtonComponent(renderButtons, animatedButtonStyle)}
+          <Pressable
+            onPress={() =>
+              navigation.navigate(NAVIGATION_SCREENS.CREATE_USERNAME)
+            }
+            style={({pressed}) => [
+              {
+                opacity: pressed ? 0.8 : 1,
+                marginVertical: _scaleText(Platform.OS == 'android' ? 15 : 10)
+                  .fontSize,
+              },
             ]}>
-            {STRINGS.LOGIN}
-          </Animated.Text>
-        </Pressable>
+            <Animated.Text
+              style={[
+                TEXT_STYLES.FI2,
+                styles.whiteText,
+                styles.secondaryText,
+                animatedButtonStyle,
+              ]}>
+              {STRINGS.LOGIN}
+            </Animated.Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

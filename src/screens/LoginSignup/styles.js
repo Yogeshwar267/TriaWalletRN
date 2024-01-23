@@ -1,5 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import {_scaleText} from '../../shared/services/utility';
+import {_scaleText, isIpad} from '../../shared/services/utility';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 
 const H = Dimensions.get('window').height;
@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    marginTop: _scaleText(40).fontSize
   },
   subContainer:{
     alignItems: 'center',
@@ -55,11 +56,11 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 300, // Match circleBorder width
-    height: 300, // Match circleBorder height
-    borderRadius: 150, // Equal to circleBorder borderRadius
-    borderWidth: 10, // Adjust as needed
-    borderColor: 'black', // White border for circular line
+    width: 300, 
+    height: 300, 
+    borderRadius: 150, 
+    borderWidth: 10, 
+    borderColor: 'black', 
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: 'white',
-    paddingVertical: _scaleText( Platform.OS == 'android' ? 12 :10).fontSize,
+    paddingVertical: _scaleText( isIpad() ? 20 : Platform.OS == 'android' ? 15 :12).fontSize,
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(Platform.OS == 'android' ? 8 :6).fontSize,
     minWidth: '90%',
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
-    paddingVertical: _scaleText(Platform.OS == 'android' ? 12 :10).fontSize,
+    paddingVertical: _scaleText(isIpad() ? 20 : Platform.OS == 'android' ? 15 :12).fontSize,
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(Platform.OS == 'android' ? 8 :6).fontSize,
     minWidth: '90%',
@@ -100,10 +101,10 @@ const styles = StyleSheet.create({
     justifyContent:"center",
   },
   buttonInner: {
-    // ... adjust if needed ...
+    
   },
   buttonText: {
-    fontWeight: '700',
+    fontWeight: 700,
     fontFamily: 'Cabrion-Bold',
     color:"black"
   },
@@ -117,8 +118,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   logoContainer: {
-    width: 50, // Adjust the size of logos here
-    height: 50, // Adjust the size of logos here
+    width: 50, 
+    height: 50, 
   },
   buttonContainer: {
     alignSelf:"center",
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     marginBottom:_scaleText(10).fontSize
   },
   animationContainer:{
-    height:_scaleText(H *0.30).fontSize,
+    height:_scaleText(H *0.25).fontSize,
     width:_scaleText(W *0.85).fontSize
   }
 });

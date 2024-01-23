@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    // ...(Platform.OS == 'android' ? {marginTop: _scaleText(25).fontSize} : {}),
   },
   actionContainer: {
-    minHeight: H * ( isIpad() ? 0.35 : Platform.OS == 'android' ? 0.465 : 0.475),
+    minHeight: Dimensions.get("screen").height * (isIpad() ? 0.35 : 0.4),
     backgroundColor: 'black',
     alignItems: 'center',
   },
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: _scaleText(25).fontSize,
+    // paddingVertical: _scaleText(25).fontSize,
   },
   whiteText: {
     color: '#fff',
@@ -260,27 +261,27 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     width: W,
-    height: H * 0.5,
+    height: H * (Platform.OS == "ios" ? 0.47 : 0.494),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
   },
   profileSvg: {
     width: W,
-    height: H * 0.4,
+    height: H * (Platform.OS == "ios" ? 0.47 : 0.494),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    top: 0,
+    bottom: _scaleText(Platform.OS == 'android' ? 10 : 25).fontSize,
     position: 'absolute',
   },
   colorContainer: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-evenly',
-    marginVertical: _scaleText(
-      isTablet() ? 40 : Platform.OS == 'android' ? 25 : 10,
-    ).fontSize,
+    // marginVertical: _scaleText(
+    //   isTablet() ? 40 : Platform.OS == 'android' ? 25 : 10,
+    // ).fontSize,
     paddingHorizontal: _scaleText(20).fontSize,
   },
 });

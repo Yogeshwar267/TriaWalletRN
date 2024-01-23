@@ -6,10 +6,12 @@ export default function () {
     // Get the scheme device
     const colorScheme = useColorScheme();
     // Get current theme from the store
-    const currentTheme = useSelector((state) => state.theme.theme);
-    // const isDark = useSelector((state) => state.theme.darkMode);
-    const isDark = true;
-    const darkMode = isDark === null ? colorScheme === 'dark' : isDark;
+    const currentTheme = "default" || useSelector((state) => state.theme.theme);
+    const isDark = useSelector((state) => state.theme.darkMode);
+    // const isDark = true;
+    // const darkMode = isDark === null ? colorScheme === 'dark' : isDark;
+    const darkMode = true;
+
     let variables = {};
     let partialTheme = {};
     let darkVariables = {};

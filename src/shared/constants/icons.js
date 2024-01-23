@@ -45,7 +45,28 @@ import TICK_GREEN from '../../assets/icons/tick-circle.svg';
 
 import EYE from '../../assets/icons/eye.svg';
 import EYE_SLASH from '../../assets/icons/eye-slash.svg';
+import GALLERY from '../../assets/icons/gallery.svg';
+import CARD_IDENTITY from '../../assets/icons/cardIdentity.svg';
+import TRiA_NO_BG from '../../assets/icons/tria_noback.svg';
+import MENU from '../../assets/icons/menu.svg';
+import SPARKLES from '../../assets/icons/sparkles.svg';
+import NOTIFICATION from '../../assets/icons/notification.svg';
+import QR_ICON from '../../assets/icons/qrIcon.svg';
+import BUY from '../../assets/icons/buy.svg';
+import SEND from '../../assets/icons/send.svg';
+import CONVERT from '../../assets/icons/convert.svg';
 
+import DARK_MODE_TRUE from '../../assets/icons/darkModeSelected.svg';
+import DARK_MODE_FALSE from '../../assets/icons/darkTheme.svg';
+
+import LIGHT_MODE_TRUE from '../../assets/icons/lightThemeSelected.svg';
+import LIGHT_MODE_FALSE from '../../assets/icons/lightMode.svg';
+
+import TRIA_USERS from '../../assets/icons/triaUsers.svg';
+import XP_ICON from '../../assets/icons/XPIcon.svg';
+import UNICORN from '../../assets/icons/Unicorn.svg';
+import REGENARATE_BORDER from '../../assets/icons/regenarate.svg';
+import FREEICON from '../../assets/icons/FreeSvg.svg';
 
 import {_scaleText} from '../services/utility';
 
@@ -102,5 +123,26 @@ export const ICONS = {
   TICK_GREEN: (...params) => <TICK_GREEN {...iconStyle(...params)} />,
   EYE: (...params) => <EYE {...iconStyle(...params)} />,
   EYE_SLASH: (...params) => <EYE_SLASH {...iconStyle(...params)} />,
+  GALLERY: (...params) => <GALLERY {...iconStyle(...params)} />,
+  CARD_IDENTITY: (...params) => <CARD_IDENTITY {...iconStyle(...params)} />,
+  TRiA_NO_BG: (...params) => <TRiA_NO_BG {...iconStyle(...params)} />,
+  MENU: (...params) => <MENU {...iconStyle(...params)} />,
+  SPARKLES: (...params) => <SPARKLES {...iconStyle(...params)} />,
+  NOTIFICATION: (...params) => <NOTIFICATION {...iconStyle(...params)} />,
+  QR_ICON: (...params) => <QR_ICON {...iconStyle(...params)} />,
+  BUY: (...params) => <BUY {...iconStyle(...params)} />,
+  SEND: (...params) => <SEND {...iconStyle(...params)} />,
+  CONVERT: (...params) => <CONVERT {...iconStyle(...params)} />,
 
+  DARK_MODE_FALSE: (...params) => <DARK_MODE_FALSE {...iconStyle(...params)} />,
+  DARK_MODE_TRUE: (...params) => <DARK_MODE_TRUE {...iconStyle(...params)} />,
+  LIGHT_MODE_FALSE: (...params) => (
+    <LIGHT_MODE_FALSE {...iconStyle(...params)} />
+  ),
+  LIGHT_MODE_TRUE: (...params) => <LIGHT_MODE_TRUE {...iconStyle(...params)} />,
+  TRIA_USERS: (...params) => <TRIA_USERS {...iconStyle(...params)} />,
+  XP_ICON: (...params) => <XP_ICON {...iconStyle(...params)} />,
+  UNICORN: (...params) => <UNICORN {...iconStyle(...params)} />,
+  REGENARATE_BORDER: (...params) => <REGENARATE_BORDER {...iconStyle(...params)} />,
+  FREEICON: (...params) => <FREEICON {...iconStyle(...params)} />,
 };

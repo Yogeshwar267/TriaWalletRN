@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 300, // Match circleBorder width
-    height: 300, // Match circleBorder height
-    borderRadius: 150, // Equal to circleBorder borderRadius
-    borderWidth: 10, // Adjust as needed
-    borderColor: 'black', // White border for circular line
+    width: 300, 
+    height: 300, 
+    borderRadius: 150, 
+    borderWidth: 10, 
+    borderColor: 'black', 
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     paddingVertical: _scaleText(10).fontSize,
     paddingHorizontal: _scaleText(70).fontSize,
     marginVertical: _scaleText(10).fontSize,
-    // maxWidth:"65%",
+
     borderRadius: 40,
     alignItems: 'center',
     alignSelf: 'center',
@@ -131,18 +131,13 @@ const styles = StyleSheet.create({
   },
   secondaryTextInput: {
     color: 'rgba(255,255,255, 0.8)',
-    // fontWeight: '5',
     fontFamily: 'Cabrion-Bold',
-    // borderRadius:_scaleText(12).fontSize,
-    // alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
     minWidth: '85%',
-    // borderColor:"white",borderWidth:1
   },
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
-    // paddingVertical: _scaleText(10).fontSize,
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(5).fontSize,
     borderRadius: _scaleText(12).fontSize,
@@ -151,11 +146,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  buttonInner: {
-    // ... adjust if needed ...
-  },
   buttonText: {
-    fontWeight: '700',
+    fontWeight: 700,
     fontFamily: 'Cabrion-Bold',
   },
   secondaryText: {
@@ -168,8 +160,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   logoContainer: {
-    width: 50, // Adjust the size of logos here
-    height: 50, // Adjust the size of logos here
+    width: 50,
+    height: 50,
   },
   buttonContainer: {
     alignSelf: 'center',
@@ -193,7 +185,6 @@ const styles = StyleSheet.create({
   animationContainer: {
     height: H * 0.35,
     width: W * 0.9,
-    // borderColor:"white",borderWidth:1
   },
   ImageContainer: {
     flexDirection: 'row',
@@ -202,9 +193,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-
-    // borderWidth: 1,
-    // borderColor: 'green',
   },
   containerProfile: {
     justifyContent: 'center',

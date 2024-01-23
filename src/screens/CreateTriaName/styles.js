@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 import {_scaleText} from '../../shared/services/utility';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 
@@ -9,40 +9,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    marginTop: _scaleText(40).fontSize,
   },
-  subContainer:{
+  subContainer: {
     alignItems: 'center',
-    justifyContent:"center",
-    paddingVertical:_scaleText(25).fontSize
+    justifyContent: 'center',
+    paddingVertical: _scaleText(25).fontSize,
+    ...(Platform.OS == 'android' ? {marginTop: 10} : {}),
   },
   whiteText: {
     color: '#fff',
   },
-  GUEST_TEXT:{
+  GUEST_TEXT: {
     color: 'rgba(255,255,255, 0.4)',
     marginVertical: _scaleText(10).fontSize,
     fontFamily: 'Cabrion-Regular',
   },
-  placeholder:{
+  placeholder: {
     color: 'rgba(255,255,255, 0.4)',
     fontFamily: 'Cabrion-Regular',
-    alignSelf:"center",
-    justifyContent:"flex-end",
+    alignSelf: 'center',
+    justifyContent: 'flex-end',
   },
-  availibaleContainer:{
-    flexDirection:"row",
-    justifyContent:"flex-start",
-    alignItems:"center"
+  availibaleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  usernameSubContainer:{
-    flexDirection:"row",
-    justifyContent:"space-between",
-    marginVertical: _scaleText(5).fontSize,
+  usernameSubContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    
   },
-  availibale:{
-    color:"#14AE5C",
-    justifyContent:"center",
-    marginHorizontal:_scaleText(5).fontSize
+  availibale: {
+    color: '#14AE5C',
+    justifyContent: 'center',
+    marginHorizontal: _scaleText(5).fontSize,
+    fontFamily: 'Cabrion-Regular',
   },
   titleText: {
     marginVertical: _scaleText(50).fontSize,
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
     // maxWidth:"65%",
     borderRadius: 40,
     alignItems: 'center',
-    alignSelf:"center"
+    alignSelf: 'center',
   },
   secondaryButton: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
@@ -118,8 +121,8 @@ const styles = StyleSheet.create({
     minWidth: '90%',
     borderRadius: 40,
     alignItems: 'center',
-    flexDirection:"row",
-    justifyContent:"center",
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   secondaryTextInput: {
     color: 'rgba(255,255,255, 0.8)',
@@ -127,21 +130,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Cabrion-Bold',
     // borderRadius:_scaleText(12).fontSize,
     // alignItems: 'center',
-    justifyContent:"center",
+    justifyContent: 'center',
     // height:"100%",
-    minWidth:"85%",
+    minWidth: '85%',
     // borderColor:"white",borderWidth:1
   },
-  secondaryTextInputContainer:{
+  secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
     paddingVertical: _scaleText(10).fontSize,
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(6).fontSize,
-    borderRadius:_scaleText(12).fontSize,
+    borderRadius: _scaleText(12).fontSize,
     // alignItems: 'center',
-    flexDirection:"row",
-    justifyContent:"space-between",
-    width:"50%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '50%',
   },
   buttonInner: {
     // ... adjust if needed ...
@@ -150,11 +153,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontFamily: 'Cabrion-Bold',
   },
-  secondaryText:{
+  secondaryText: {
     fontFamily: 'Cabrion-Bold',
     fontWeight: 500,
-    alignItems: 'flex-start' ,
-    justifyContent:"flex-start"
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   guestText: {
     textDecorationLine: 'underline',
@@ -164,68 +167,72 @@ const styles = StyleSheet.create({
     height: 50, // Adjust the size of logos here
   },
   buttonContainer: {
-    alignSelf:"center",
+    alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    bottom:_scaleText(15).fontSize,
-    position:"absolute",
+    bottom: _scaleText(15).fontSize,
+    position: 'absolute',
     marginTop: _scaleText(40).fontSize,
-
   },
-  buttonSubContainer:{
-    alignSelf:"center",
+  buttonSubContainer: {
+    alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    justifyContent:"center",
+    justifyContent: 'center',
   },
-  fontLight:{
+  fontLight: {
     fontFamily: 'Cabrion-Light',
-    fontWeight:200,
-    marginBottom:_scaleText(10).fontSize
+    fontWeight: 200,
+    marginBottom: _scaleText(10).fontSize,
   },
-  animationContainer:{
-    height:H *0.35,
-    width:W *0.90,
+  animationContainer: {
+    height: H * 0.35,
+    width: W,
     // borderColor:"white",borderWidth:1
   },
-  ImageContainer:{
-    flexDirection:"row",
-    height:"100%",
-    width:"100%",
+  ImageContainer: {
+    flexDirection: 'row',
+    height: '100%',
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
 
     // borderWidth: 1,
     // borderColor: 'green',
-
   },
   containerProfile: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   radialGradient: {
-    borderColor:"white",borderWidth:2,
-    margin:_scaleText(5).fontSize,
+    borderColor: 'white',
+    borderWidth: 2,
+    margin: _scaleText(5).fontSize,
   },
-  freeContainer:{
+  freeContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
-    borderRadius:_scaleText(20).fontSize,
+    borderRadius: _scaleText(20).fontSize,
     paddingVertical: _scaleText(3).fontSize,
     paddingHorizontal: _scaleText(12).fontSize,
   },
-  freeText:{
+  freeText: {
     fontFamily: 'Cabrion-Bold',
-    fontWeight: 500,
-    color:"#FFFF",
+    fontWeight: 700,
+    color: '#FFFF',
   },
   keyboardSafeAreaView: {
-    flex:1
+    flex: 1,
   },
   keyboardSafeAreaViewChild: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexGrow:1
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: 1,
+  },
+  userName: {
+    color: '#ffff',
+    fontFamily: 'Cabrion-Regular',
+    fontWeight: '600',
   },
 });
 

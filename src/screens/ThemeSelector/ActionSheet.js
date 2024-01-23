@@ -1,113 +1,101 @@
 //import liraries
-import React, {Component, useEffect, useRef} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  Dimensions,
-  Image,
   Pressable,
-  ImageBackground,
 } from 'react-native';
 import styles from './styles';
-import ActionSheet from 'react-native-actions-sheet';
-import DropShadow from 'react-native-drop-shadow';
 import {STRINGS, images} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
-import {ICONS} from '../../shared/constants/icons';
 import {_scaleText} from '../../shared/services/utility';
 import {Animated} from 'react-native';
-import {profileConfigurations} from './constants';
-import ColorSvg from './ColorSvg';
-import ThemeButtonSvg from '../../components/atoms/CustomThemeIcons';
+import customStyling from '../../shared/services/styles';
+import BottomSheet from '../../components/atoms/CustomBottomSheet';
 
 const ThemeActionSheet = ({
-  setRef = () => {},
-  setSelectedValue = () => {},
   renderItem = () => {},
   onNext = () => {},
+  isModalVisible = true,
+  setModalVisible = () => {},
 }) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
-  const actionSheet = useRef();
   useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-
     Animated.timing(buttonAnim, {
       toValue: 1,
       duration: 1000,
       useNativeDriver: true,
     }).start();
-  }, [fadeAnim, buttonAnim]);
+  }, [buttonAnim]);
 
-  const animatedButtonStyle = {
-    opacity: buttonAnim,
-    transform: [
-      {
-        translateY: buttonAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [50, 0],
-        }),
-      },
-    ],
-  };
+  const animatedButtonStyle = useMemo(() => {
+    return {
+      opacity: buttonAnim,
+      transform: [
+        {
+          translateY: buttonAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [50, 0],
+          }),
+        },
+      ],
+    };
+  }, [buttonAnim]);
 
   useEffect(() => {
-    if (actionSheet.current) setRef(actionSheet.current);
-  }, [actionSheet.current]);
+    setModalVisible(true);
+  }, []);
+
   return (
-    <ActionSheet
-      ref={actionSheet}
-      closable={false}
-      containerStyle={styles.actionContainer}
-      indicatorStyle={styles.actionheader}
-      backgroundInteractionEnabled={true}
-      headerAlwaysVisible={true}
-      isModal={false}
-      overdrawEnabled={false}>
-      <Text
-        style={[
-          styles.whiteText,
-          TEXT_STYLES.H2,
-          {marginTop: _scaleText(10).fontSize},
-        ]}>
-        {STRINGS.THEME_SELECT}
-      </Text>
-      <Text
-        style={[
-          Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
-          styles.GUEST_TEXT,
-        ]}>
-        {STRINGS.THEME_SELECT_SUBHEADING}
-      </Text>
+    <BottomSheet
+      id={'Theme'}
+      isModalVisible={isModalVisible}
+      setModalVisible={setModalVisible}>
+      <View style={customStyling.actionTitleContainer}>
+        <Text
+          style={[
+            styles.whiteText,
+            TEXT_STYLES.H2,
+            {marginTop: _scaleText(10).fontSize},
+          ]}>
+          {STRINGS.THEME_SELECT}
+        </Text>
+        <Text
+          style={[
+            Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
+            styles.GUEST_TEXT,
+          ]}>
+          {STRINGS.THEME_SELECT_SUBHEADING}
+        </Text>
+      </View>
       {renderItem()}
       <Animated.View style={[animatedButtonStyle, styles.buttonContainer]}>
         <Pressable
-          onPress={onNext}
+          onPress={() => onNext()}
           style={({pressed}) => [
-            styles.primaryButton,
+            customStyling.primaryButton,
             {
               opacity: pressed ? 0.8 : 1,
             },
           ]}>
-          <Text style={[TEXT_STYLES.SB1, styles.buttonText]}>
+          <Text
+            style={[
+              Platform.OS == 'android' ? TEXT_STYLES.H3 : TEXT_STYLES.H4,
+              styles.buttonText,
+            ]}>
             {STRINGS.NEXT}
           </Text>
         </Pressable>
         <Text
           style={[
-            TEXT_STYLES.PopUpTitle,
+            Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H6,
             styles.GUEST_TEXT,
             {textDecorationLine: 'underline'},
           ]}>
           {STRINGS.SKIP}
         </Text>
       </Animated.View>
-    </ActionSheet>
+    </BottomSheet>
   );
 };
 

@@ -1,7 +1,6 @@
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 import {_scaleText, isIpad} from '../../shared/services/utility';
-import {TEXT_STYLES} from '../../shared/constants/styles';
-import { isTablet } from 'react-native-device-info';
+import {isTablet} from 'react-native-device-info';
 
 const H = Dimensions.get('window').height;
 const W = Dimensions.get('window').width;
@@ -10,10 +9,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: _scaleText(40).fontSize
   },
   actionContainer: {
-    minHeight: H * ( isIpad() ? 0.35 : Platform.OS == 'android' ? 0.465 : 0.475),
+    minHeight: Dimensions.get('screen').height * (isIpad() ? 0.35 : 0.4),
     backgroundColor: 'black',
     alignItems: 'center',
   },
@@ -26,7 +24,9 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: _scaleText(25).fontSize,
+    borderWidth: 1,
+    borderColor: 'yellow',
+    width: '100%',
   },
   whiteText: {
     color: '#fff',
@@ -88,11 +88,11 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 300, // Match circleBorder width
-    height: 300, // Match circleBorder height
-    borderRadius: 150, // Equal to circleBorder borderRadius
-    borderWidth: 10, // Adjust as needed
-    borderColor: 'black', // White border for circular line
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    borderWidth: 10,
+    borderColor: 'black',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     paddingVertical: _scaleText(10).fontSize,
     paddingHorizontal: _scaleText(70).fontSize,
     marginVertical: _scaleText(10).fontSize,
-    // maxWidth:"65%",
+
     borderRadius: 40,
     alignItems: 'center',
     alignSelf: 'center',
@@ -135,14 +135,12 @@ const styles = StyleSheet.create({
   },
   secondaryTextInput: {
     color: 'rgba(255,255,255, 0.8)',
-    // fontWeight: '5',
+
     fontFamily: 'Cabrion-Bold',
-    // borderRadius:_scaleText(12).fontSize,
-    // alignItems: 'center',
+
     justifyContent: 'center',
-    // height:"100%",
+
     minWidth: '85%',
-    // borderColor:"white",borderWidth:1
   },
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
@@ -150,19 +148,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(6).fontSize,
     borderRadius: _scaleText(12).fontSize,
-    // alignItems: 'center',
+
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '50%',
   },
-  buttonInner: {
-    // ... adjust if needed ...
-  },
+  buttonInner: {},
   buttonText: {
-    fontWeight: '700',
+    fontWeight: 700,
     fontFamily: 'Cabrion-Bold',
-    color:"black",
-
+    color: 'black',
   },
   secondaryText: {
     fontFamily: 'Cabrion-Bold',
@@ -174,17 +169,15 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   logoContainer: {
-    width: 50, // Adjust the size of logos here
-    height: 50, // Adjust the size of logos here
+    width: 50,
+    height: 50,
   },
   avatarButton: {
     flexDirection: 'row',
     justifyContent: 'center',
     height: _scaleText(60).fontSize,
   },
-  galleryButton: {
-    // left:10
-  },
+  galleryButton: {},
   regenarteBUtton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -201,9 +194,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    // marginTop: _scaleText(10).fontSize,
-    marginBottom: _scaleText( isIpad() ? 40 :20).fontSize,
-    // borderColor:"white",borderWidth:1
+
+    marginBottom: _scaleText(isIpad() ? 40 : 20).fontSize,
   },
   buttonSubContainer: {
     alignSelf: 'center',
@@ -219,7 +211,6 @@ const styles = StyleSheet.create({
   animationContainer: {
     height: H * 0.35,
     width: W * 0.9,
-    // borderColor:"white",borderWidth:1
   },
   ImageContainer: {
     flexDirection: 'row',
@@ -228,9 +219,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-
-    // borderWidth: 1,
-    // borderColor: 'green',
   },
   containerProfile: {
     justifyContent: 'center',
@@ -261,15 +249,17 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   profileContainer: {
-    width: W,
-    height: H * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
+    width: '100%',
+    height: '60%',
+    borderWidth: 2,
+    borderColor: 'white',
   },
   profileSvg: {
     width: W,
-    height: H * 0.4,
+    height: H * (Platform.OS == 'ios' ? 0.47 : 0.494),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
@@ -280,28 +270,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '40%',
     justifyContent: 'space-evenly',
-    // marginVertical: _scaleText(10).fontSize,
+
     paddingHorizontal: _scaleText(20).fontSize,
   },
-  chips: (color) => ({
+  chips: color => ({
     borderColor: color,
-    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 4 : 1).fontSize,
+    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 4 : 1)
+      .fontSize,
     borderRadius: 25,
     marginVertical: _scaleText(Platform.OS == 'android' ? 7 : 5).fontSize,
     marginHorizontal: _scaleText(Platform.OS == 'android' ? 5 : 3).fontSize,
   }),
-  chipsText:(color) => ({
+  chipsText: color => ({
     paddingHorizontal: _scaleText(Platform.OS == 'android' ? 13 : 10).fontSize,
-    paddingVertical: _scaleText(Platform.OS == 'android' ? 10  : 4).fontSize,
-    color:color
+    paddingVertical: _scaleText(Platform.OS == 'android' ? 10 : 4).fontSize,
+    color: color,
   }),
   chipsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: _scaleText( isTablet() ? 100 : Platform.OS == "android" ? 40 : 20).fontSize,
+    paddingHorizontal: _scaleText(
+      isTablet() ? 100 : Platform.OS == 'android' ? 40 : 20,
+    ).fontSize,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: _scaleText(isIpad() ? 20 : isTablet() ? 30 : Platform.OS == 'ios' ? 0 : 10).fontSize,
   },
   chipsContainerIdentity: {
     flexDirection: 'row',
@@ -309,23 +301,47 @@ const styles = StyleSheet.create({
     width: W * (isIpad() ? 0.4 : isTablet() ? 0.45 : 0.6),
 
     paddingHorizontal: _scaleText(20).fontSize,
-    // justifyContent: 'space-evenly',
-    // alignItems: 'center',
-    marginVertical: _scaleText(10).fontSize,
-    position:"absolute",
-    top:_scaleText(140).fontSize,
 
+    marginVertical: _scaleText(10).fontSize,
+    position: 'absolute',
+    top: _scaleText(Platform.OS == 'android' ? 120 : 130).fontSize,
   },
   chipsTextIdentity: {
-    paddingHorizontal: _scaleText(Platform.OS == 'android' ? 13 : 10).fontSize,
-    paddingVertical: _scaleText(Platform.OS == 'android' ? 8  : 4).fontSize,
+    paddingHorizontal: _scaleText(Platform.OS == 'android' ? 10 : 10).fontSize,
+    paddingVertical: _scaleText(Platform.OS == 'android' ? 8 : 4).fontSize,
   },
   chipsIdentity: {
     borderColor: 'white',
-    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 4 : 1).fontSize,
+    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 3.8 : 1)
+      .fontSize,
     borderRadius: 25,
     marginVertical: _scaleText(Platform.OS == 'android' ? 8 : 5).fontSize,
     marginHorizontal: _scaleText(Platform.OS == 'android' ? 5 : 2).fontSize,
+  },
+  xpContainer: {
+    borderWidth: isTablet() ? 2 : Platform.OS == 'android' ? 1 : 1,
+    borderColor: 'rgba(211, 184, 44, 1)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 50,
+    top: _scaleText(Platform.OS == 'android' ? 15 : 10).fontSize,
+    marginRight: _scaleText(25).fontSize,
+  },
+  xpText: {
+    color: 'rgba(221, 200, 90, 1)',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    paddingHorizontal: _scaleText(isTablet() ? 15 : 10).fontSize,
+    paddingVertical: _scaleText(isTablet() ? 10 : 7).fontSize,
+    fontSize: _scaleText(14).fontSize,
+  },
+  sparkles: {
+    position: 'absolute',
+    top: _scaleText(isTablet() ? -13 : Platform.OS == 'android' ? -5 : -10)
+      .fontSize,
+    right: _scaleText(isTablet() ? -13 : Platform.OS == 'android' ? -5 : -10)
+      .fontSize,
   },
 });
 

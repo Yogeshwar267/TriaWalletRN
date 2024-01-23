@@ -1,21 +1,17 @@
 //import liraries
-import React, {Component, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   Platform,
   Pressable,
-  Dimensions,
   Easing,
 } from 'react-native';
 import styles from './styles';
 import {TEXT_STYLES} from '../../../shared/constants/styles';
-import {STRINGS} from '../../../shared';
 import {ICONS} from '../../../shared/constants/icons';
 import {_scaleText} from '../../../shared/services/utility';
-import PasswordProgressBar from '../CustomPasswordProgress/ProgressBar';
 import {Animated} from 'react-native';
 import { isTablet } from 'react-native-device-info';
 
@@ -90,9 +86,9 @@ const CustomTextField = ({
             inputStyle || [styles.secondaryTextInput, TEXT_STYLES.FM2],
             [
               isTablet() ? {paddingVertical: _scaleText(15).fontSize} : Platform.OS == 'android'
-                ? {paddingVertical: _scaleText(8).fontSize}
-                : {paddingVertical: _scaleText(15).fontSize},
-            ],{fontWeight:"600"}
+                ? {paddingVertical: _scaleText(12).fontSize}
+                : {paddingVertical: _scaleText(18).fontSize},
+            ],{fontWeight:'bold'}
           ]}
           placeholderTextColor={placeholderTextColor}
           placeholder={placeholderText}

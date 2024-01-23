@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
-    fontWeight: '700',
+    fontWeight: 700,
     fontFamily: 'Cabrion-Bold',
   },
   guestText: {
@@ -129,16 +129,13 @@ const styles = StyleSheet.create({
   },
   rightHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: W * (isTablet() ? 0.4 : 0.65),
+    // justifyContent: 'space-evenly',
+    // width: W * (isTablet() ? 0.3 : 0.65),
     height: H * 0.05,
     alignItems: 'center',
-    marginTop: _scaleText(isTablet() ? 100 : Platform.OS == 'android' ? 50 : 60)
-      .fontSize,
-    // paddingRight: _scaleText(5).fontSize,
   },
   xpContainer: {
-    borderWidth: isTablet() ? 2 : Platform.OS == 'android' ? 6 : 1,
+    borderWidth: isTablet() ? 2 : Platform.OS == 'android' ? 1 : 1,
     borderColor: 'rgba(211, 184, 44, 1)',
     flexDirection: 'row',
     alignItems: 'center',
@@ -149,16 +146,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'transparent',
-    paddingHorizontal: _scaleText(isTablet ? 15 : 10).fontSize,
+    paddingHorizontal: _scaleText(isTablet() ? 15 : 10).fontSize,
     paddingVertical: _scaleText(isTablet() ? 10 : 7).fontSize,
   },
   sparkles: {
     position: 'absolute',
-    top: _scaleText( isTablet() ? - 13 : -10).fontSize,
-    right: _scaleText(isTablet() ? - 13 : -10).fontSize,
+    top: _scaleText(isTablet() ? -13 : Platform.OS == 'android' ? -5 :  -10).fontSize,
+    right: _scaleText(isTablet() ? -13 : Platform.OS == 'android' ? -5 : -10).fontSize,
   },
   balanceContainer: {
-    marginTop: _scaleText(100).lineHeight,
+    marginTop: _scaleText(10).lineHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
     width: _scaleText(W * 0.75).fontSize,
@@ -176,7 +173,7 @@ const styles = StyleSheet.create({
     marginHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(20).fontSize,
     alignItems: 'center',
-    alignContent:"center"
+    alignContent: 'center',
   },
   button: {
     flex: 1,
@@ -186,8 +183,8 @@ const styles = StyleSheet.create({
     marginHorizontal: _scaleText(5).fontSize,
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent:"center",
-    alignSelf:"center",
+    alignContent: 'center',
+    alignSelf: 'center',
     paddingVertical: _scaleText(isIpad() ? 30 : 15).fontSize,
   },
   buttonFont: {

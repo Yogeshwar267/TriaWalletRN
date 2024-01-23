@@ -6,4 +6,6 @@ export const images = {
   BLUR_FANTOM: require('../../assets/images/Fantom.png'),
   BLUR_OPTIMISM: require('../../assets/images/Optimism.png'),
   BLUR_POLYGON: require('../../assets/images/Polygon.png'),
+  REGENERATE_AVATAR: require('../../assets/images/avatarRegenerate.png'),
+  USERS: require('../../assets/images/Users.png'),
 };

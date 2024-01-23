@@ -1,9 +1,7 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {Dimensions} from 'react-native';
 import Svg, {
-  Circle,
-  Ellipse,
   G,
   Image,
   Rect,

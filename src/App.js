@@ -7,21 +7,25 @@ import ApplicationNavigator from './navigators/Application';
 import './translations';
 import { KeyboardAvoidingView, View } from 'react-native';
 import KeyboardAwareView from './components/molecules/keyboardAwareView';
+import { SheetProvider } from "react-native-actions-sheet";
+import "../src/components/atoms/CustomActionSheet/sheet";
 const App = () => (
 <Provider store={store}>
+  <SheetProvider>
     {/**
      * PersistGate delays the rendering of the app's UI until the persisted state has been retrieved
      * and saved to redux.
      * The `loading` prop can be `null` or any react instance to show during loading (e.g. a splash screen),
      * for example `loading={<SplashScreen />}`.
      * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
-     */}
+    */}
     <PersistGate loading={null} persistor={persistor}>
-      <View style={{flex: 1,backgroundColor: "black"}}>
+      <View style={{flex: 1}}>
       <KeyboardAwareView>
       <ApplicationNavigator />
       </KeyboardAwareView>
       </View>
     </PersistGate>
+      </SheetProvider>
   </Provider>);
 export default App;

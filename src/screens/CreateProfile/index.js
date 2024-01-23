@@ -1,16 +1,12 @@
 //import liraries
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useState} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Animated,
-  Dimensions,
   Pressable,
-  Platform,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
 import {_scaleText} from '../../shared/services/utility';
 import {COLORS} from '../../shared';
 import AvatarSelection from '../AvatarSelection';
@@ -20,7 +16,8 @@ import ThemeSelection from '../ThemeSelector';
 import InterestSelection from '../SelectInterests';
 import {useTheme} from '../../hooks';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import { isTablet } from 'react-native-device-info';
+import {isTablet} from 'react-native-device-info';
+import customStyling from '../../shared/services/styles';
 
 // create a component
 const CreateProfile = () => {
@@ -36,61 +33,32 @@ const CreateProfile = () => {
   ];
 
   const renderMiddleHeader = () => (
-    <View style={styles.paginationContainer}>
-      {CREATE_PROFILE.map((_, index) => (
-        <View
-          key={index}
-          style={[styles.paginationDot(index === selectedValue)]}
-          //   onPress={() => handlePageChange(index)}
-        />
-      ))}
+    <View style={{flexDirection:"row", justifyContent:"space-between" , alignItems: "center",alignSelf:"center" , width: "90%",}}>
+      <Pressable
+        hitSlop={_scaleText(26).fontSize}
+        onPress={() =>
+          selectedValue == CREATE_PROFILE[0].AVATAR_CREATION
+            ? navigation.goBack
+            : setSelectedValue(prev => prev - 1)
+        }>
+        {ICONS.ARROW_LEFT(_scaleText(25).fontSize)}
+      </Pressable>
+      <View style={customStyling.paginationContainer}>
+        {CREATE_PROFILE.map((_, index) => (
+          <View
+            key={index}
+            style={[customStyling.paginationDot(index === selectedValue)]}
+            //   onPress={() => handlePageChange(index)}
+          />
+        ))}
+      </View>
+      <Pressable
+        hitSlop={_scaleText(26).fontSize}
+        onPress={() => {}}>
+        {ICONS.XP_ICON(_scaleText(isTablet() ? 90 : 80).fontSize)}
+      </Pressable>
     </View>
   );
-  useEffect(() => {
-    navigation.setOptions({
-      headerShown: true,
-      headerTitle: () => renderMiddleHeader(),
-      headerTitleAlign: 'center',
-      ...(selectedValue !== CREATE_PROFILE[0].AVATAR_CREATION
-        ? {
-            headerLeft: ({}) => (
-              <Pressable
-                style={{
-                  top: _scaleText(Platform.OS == 'android' ? 35 : 15).fontSize,
-                  paddingHorizontal: _scaleText(
-                    Platform.OS == 'android' ? 30 : 15,
-                  ).fontSize,
-                  position: 'absolute',
-                }}
-                hitSlop={_scaleText(26).fontSize}
-                onPress={() => selectedValue == CREATE_PROFILE[0].AVATAR_CREATION ? navigation.goBack : setSelectedValue(prev => prev-1)}>
-                {ICONS.ARROW_LEFT(_scaleText(25).fontSize)}
-              </Pressable>
-            ),
-          }
-        : {}),
-        ...(selectedValue == CREATE_PROFILE[3].CHOOSE_INTERESTS
-          ? {
-            headerRight: ({}) => (
-              <Pressable
-                style={{
-                  paddingHorizontal: _scaleText(Platform.OS == 'android' ? 30 : 15)
-                    .fontSize,
-                  marginTop :_scaleText(isTablet() && Platform.OS == 'android' ? 45 : 20).fontSize
-                }}
-                hitSlop={_scaleText(26).fontSize}
-                onPress={() => {}}>
-                {ICONS.XP_ICON(_scaleText(isTablet() ? 90 : 70).fontSize)}
-              </Pressable>
-            ),
-            }
-          : {}),
-        
-      headerStyle: {
-        backgroundColor: 'transparent',
-      },
-    });
-  }, [navigation, selectedValue]);
 
   const renderCreateProfile = () => {
     switch (selectedValue) {
@@ -132,6 +100,7 @@ const CreateProfile = () => {
 
   return (
     <SafeAreaView style={[Layout.fill, {backgroundColor: 'black'}]}>
+      {renderMiddleHeader()}
       <View style={styles.container}>{renderCreateProfile()}</View>
     </SafeAreaView>
   );
@@ -148,16 +117,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
-    width: '100%',
-    marginTop: _scaleText(isTablet() && Platform.OS == 'android' ? 35 : 12).fontSize,
   },
   paginationDot: isActive => ({
     width: isActive ? _scaleText(70).fontSize : _scaleText(15).fontSize,
     height: _scaleText(6).fontSize,
     borderRadius: 5,
     marginHorizontal: _scaleText(5).fontSize,
-    marginTop: _scaleText(Platform.OS == 'android' ? 16 : 8).fontSize,
     backgroundColor: isActive ? COLORS.WHITE : COLORS.WHITE_40,
   }),
 });

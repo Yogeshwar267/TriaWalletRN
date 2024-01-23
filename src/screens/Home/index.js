@@ -3,24 +3,18 @@ import {
   Dimensions,
   Platform,
   Pressable,
-  StatusBar,
   Text,
   View,
 } from 'react-native';
-import React, {useEffect, useRef} from 'react';
-import LandingAnimation from './animation';
+import React, {useEffect, useMemo, useRef} from 'react';
 import {STRINGS} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {_scaleText, isIpad} from '../../shared/services/utility';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {NAVIGATION_SCREENS} from '../../navigators/constants';
 import Radial from 'react-native-radial-gradient';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {ICONS} from '../../shared/constants/icons';
-import {useSelector} from 'react-redux';
 import {profileConfigurations} from '../AvatarSelection/constants';
-import LinearGradient from 'react-native-linear-gradient';
 import {isTablet} from 'react-native-device-info';
 
 const HomePage = () => {
@@ -61,33 +55,41 @@ const HomePage = () => {
     }).start();
   }, [fadeAnim, buttonAnim]);
 
-  const animatedButtonStyle = {
-    opacity: buttonAnim,
+  const animatedButtonStyle = useMemo(() => {
+    return {
+      opacity: buttonAnim,
+      transform: [
+        {
+          translateY: buttonAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [50, 0],
+          }),
+        },
+      ],
+    };
+  }, [buttonAnim]);
 
-    transform: [
-      {
-        translateY: buttonAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [50, 0],
-        }),
-      },
-    ],
-  };
+  return (
+    <View style={styles.container}>
+      <Radial
+        style={{width: W, height: H, position: 'absolute'}}
+        colors={['rgba(67, 63, 229, 1)', 'transparent']}
+        stops={[0, 1]}
+        center={[W * 0.5, 0]}
+        radius={_scaleText(Platform.OS == "android" ? 200 : 300).fontSize}></Radial>
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerShown: true,
-      // headerTitle: () => renderMiddleHeader(),
-      headerTitleAlign: 'center',
-      headerLeft: () => (
+      <Animated.View
+        style={{
+          opacity: fadeAnim,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: _scaleText(Platform.OS == 'android' ? 20 : 40).lineHeight,
+          width: '90%',
+        }}>
         <Pressable
           style={({pressed}) => [
             {
-              top: _scaleText(
-                isIpad() ? 50 : Platform.OS == 'android' ? 50 : 15,
-              ).fontSize,
-              paddingHorizontal: _scaleText(Platform.OS == 'android' ? 30 : 15)
-                .fontSize,
               opacity: pressed ? 0.5 : 1,
             },
           ]}
@@ -97,8 +99,7 @@ const HomePage = () => {
               .fontSize,
           )}
         </Pressable>
-      ),
-      headerRight: ({}) => (
+
         <View style={styles.rightHeader}>
           <Pressable
             style={styles.xpContainer}
@@ -110,41 +111,29 @@ const HomePage = () => {
             </View>
             <Text style={styles.xpText}>234 XP in Quests</Text>
           </Pressable>
-          {ICONS.NOTIFICATION(
-            _scaleText(Platform.OS == 'android' ? 30 : 25).fontSize,
-          )}
+          <Pressable
+            style={({pressed}) => [
+              {
+                paddingHorizontal: _scaleText(10).fontSize,
+                opacity: pressed ? 0.5 : 1,
+              },
+            ]}>
+            {ICONS.NOTIFICATION(
+              _scaleText(Platform.OS == 'android' ? 30 : 25).fontSize,
+            )}
+          </Pressable>
           <View
             style={{
               backgroundColor: userDetails?.avatar?.imgColor,
               borderRadius: 50,
             }}>
             {userDetails?.avatar?.image(
-              _scaleText(isTablet() ? 40 : Platform.OS == 'android' ? 20 : 30)
+              _scaleText(isTablet() ? 40 : Platform.OS == 'android' ? 30 : 30)
                 .fontSize,
             )}
           </View>
         </View>
-      ),
-
-      headerShown: true,
-      headerTransparent: true,
-      headerTitle: () => null,
-      headerStyle: {
-        backgroundColor: '#0000',
-        height: _scaleText(25).fontSize,
-      },
-    });
-  }, [navigation]);
-
-  return (
-    <View style={styles.container}>
-      <Radial
-        style={{width: W, height: H, position: 'absolute'}}
-        colors={['rgba(67, 63, 229, 1)', 'transparent']}
-        stops={[0, 1]}
-        center={[W * 0.5, 0]}
-        radius={300}></Radial>
-
+      </Animated.View>
       <Animated.View style={[styles.balanceContainer, {opacity: fadeAnim}]}>
         <View>
           <Text style={[styles.balanceText, TEXT_STYLES.REGULAR30]}>

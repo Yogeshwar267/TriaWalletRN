@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255, 0.4)',
     marginVertical: _scaleText(20).fontSize,
     fontFamily: 'Cabrion-Regular',
+    textDecorationLine:"underline"
 
   },
   titleText: {

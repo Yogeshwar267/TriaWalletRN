@@ -8,7 +8,7 @@ import Animated, {
   withRepeat,
 } from 'react-native-reanimated';
 import { ICONS } from '../../shared/constants/icons';
-import { _scaleText } from '../../shared/services/utility';
+import { _scaleText, isIpad } from '../../shared/services/utility';
 
 const duration = 2500;
 
@@ -19,7 +19,7 @@ function Logo({ icon, translateY, rotateZ }) {
 
   return (
     <Animated.View style={[styles.box, animatedStyle]}>
-      {icon(50)}
+      {icon(_scaleText(isIpad() ? 60 : 50).fontSize)}
     </Animated.View>
   );
 }
@@ -28,7 +28,7 @@ function Logo({ icon, translateY, rotateZ }) {
 function ScreenAnimation() {
   const H = Dimensions.get('window').height;
 
-  const containerHeight =_scaleText(H *0.35).fontSize
+  const containerHeight =_scaleText( isIpad() ? Dimensions.get("screen").height * 0.50 : H *  0.35).fontSize
 
   const defaultAnimY = useSharedValue(0);
   const moveUp = useSharedValue(_scaleText(containerHeight * (Platform.OS == 'android' ? 0.6 : 0.5)).fontSize);
@@ -86,10 +86,7 @@ const styles = StyleSheet.create({
   container: {
     height: '50%',
     width: '100%',
-    marginTop: _scaleText(30).fontSize,
-    // alignSelf: 'center',
-    // alignContent: 'center',
-    // alignItems: 'center',
+    marginTop: _scaleText(0).fontSize,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },

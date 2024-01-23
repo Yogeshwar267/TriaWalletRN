@@ -1,50 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  View,
-  TextInput,
   KeyboardAvoidingView,
-  ScrollView,
   Platform,
   StyleSheet,
-  Keyboard,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {_scaleText} from '../../../shared/services/utility';
 
 const KeyboardAwareView = ({children}) => {
-  const [keyboardVerticalOffset, setKeyboardVerticalOffset] = useState(0);
-
-  const handleKeyboardDidShow = event => {
-    setKeyboardVerticalOffset(event.endCoordinates.height);
-  };
-
-  const handleKeyboardDidHide = () => {
-    setKeyboardVerticalOffset(0);
-  };
-
-  useEffect(() => {
-    function onKeyboardDidShow(e) {
-      // Remove type here if not using TypeScript
-      setKeyboardVerticalOffset(e.endCoordinates.height);
-    }
-
-    function onKeyboardDidHide() {
-      setKeyboardVerticalOffset(0);
-    }
-
-    const showSubscription = Keyboard.addListener(
-      'keyboardDidShow',
-      onKeyboardDidShow,
-    );
-    const hideSubscription = Keyboard.addListener(
-      'keyboardDidHide',
-      onKeyboardDidHide,
-    );
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    };
-  }, []);
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
   return (
     <>
@@ -62,7 +26,7 @@ const KeyboardAwareView = ({children}) => {
           style={styles.container}
           extraHeight={_scaleText(65).fontSize}
           enableOnAndroid
-          scrollEnabled={true}>
+          scrollEnabled={false}>
           {children}
         </KeyboardAwareScrollView>
       )}

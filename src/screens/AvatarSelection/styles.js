@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { _scaleText, isIpad } from '../../shared/services/utility';
-import {TEXT_STYLES} from '../../shared/constants/styles';
 import { isTablet } from 'react-native-device-info';
 
 const H = Dimensions.get('window').height;
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   actionContainer: {
-    minHeight: H * (isIpad() ? 0.35 : Platform.OS == 'android' ? 0.46 : 0.475),
+    minHeight: Dimensions.get("screen").height * (isIpad() ? 0.35 : 0.4),
     backgroundColor: 'black',
     alignItems: 'center',
   },
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: _scaleText(25).fontSize,
   },
   whiteText: {
     color: '#fff',
@@ -87,11 +85,11 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 300, // Match circleBorder width
-    height: 300, // Match circleBorder height
-    borderRadius: 150, // Equal to circleBorder borderRadius
-    borderWidth: 10, // Adjust as needed
-    borderColor: 'black', // White border for circular line
+    width: 300, 
+    height: 300, 
+    borderRadius: 150, 
+    borderWidth: 10, 
+    borderColor: 'black', 
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -116,7 +114,6 @@ const styles = StyleSheet.create({
     paddingVertical: _scaleText(10).fontSize,
     paddingHorizontal: _scaleText(70).fontSize,
     marginVertical: _scaleText(10).fontSize,
-    // maxWidth:"65%",
     borderRadius: 40,
     alignItems: 'center',
     alignSelf: 'center',
@@ -134,14 +131,9 @@ const styles = StyleSheet.create({
   },
   secondaryTextInput: {
     color: 'rgba(255,255,255, 0.8)',
-    // fontWeight: '5',
     fontFamily: 'Cabrion-Bold',
-    // borderRadius:_scaleText(12).fontSize,
-    // alignItems: 'center',
     justifyContent: 'center',
-    // height:"100%",
     minWidth: '85%',
-    // borderColor:"white",borderWidth:1
   },
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
@@ -149,13 +141,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: _scaleText(10).fontSize,
     marginVertical: _scaleText(6).fontSize,
     borderRadius: _scaleText(12).fontSize,
-    // alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '50%',
-  },
-  buttonInner: {
-    // ... adjust if needed ...
   },
   buttonText: {
     fontWeight: '700',
@@ -172,39 +160,41 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   logoContainer: {
-    width: 50, // Adjust the size of logos here
-    height: 50, // Adjust the size of logos here
+    width: 50, 
+    height: 50, 
   },
   avatarButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    height: _scaleText(isTablet() ? 90: 60).fontSize,
-    marginVertical: isTablet() ? _scaleText(30).fontSize :   Platform.OS == 'android' ? _scaleText(10).fontSize :0
+    alignItems:"center",
+    marginVertical: _scaleText(5).fontSize
   },
   galleryButton: {
-    // left:10
+    marginRight: 12
   },
   regenarteBUtton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: _scaleText(W * ( isTablet() ? 0.60 :  Platform.OS == 'android' ? 0.75 :0.65)).fontSize,
+    alignContent:"center",
+    ...(isTablet() && Platform.OS == 'android' ? {marginLeft: 10} : {marginLeft: 5})
   },
   regeneratePressable: {
-    height: '100%',
-    width: '100%',
+    width: _scaleText(W * (isTablet() ? 0.45 : Platform.OS == 'android' ? 0.6 : 0.6)).fontSize,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: _scaleText(Platform.OS == 'android' ? 10 :30).fontSize,
+    flexDirection:"row",
+    alignContent:"center",
+    alignSelf:"center",
+  },
+  regenrateButton:{
+    flexDirection:"row",
+    justifyContent:"center",
+    alignItems:"center",
   },
   buttonContainer: {
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    // bottom:_scaleText(15).fontSize,
-    // position:"absolute",
-    marginTop: _scaleText(15).fontSize,
-    marginBottom: _scaleText(20).fontSize,
-    // borderColor:"white",borderWidth:1
 
   },
   buttonSubContainer: {
@@ -221,7 +211,6 @@ const styles = StyleSheet.create({
   animationContainer: {
     height: H * 0.35,
     width: W * 0.9,
-    // borderColor:"white",borderWidth:1
   },
   ImageContainer: {
     flexDirection: 'row',
@@ -230,9 +219,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-
-    // borderWidth: 1,
-    // borderColor: 'green',
   },
   containerProfile: {
     justifyContent: 'center',
@@ -264,7 +250,7 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     width: W,
-    height: H * 0.5,
+    height: H * (Platform.OS == "ios" ? 0.48 : 0.45),
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',

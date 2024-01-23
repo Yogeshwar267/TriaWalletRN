@@ -5,31 +5,17 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Text,
-  Platform,
 } from 'react-native';
 import {COLORS} from '../../../shared';
 import {_scaleText} from '../../../shared/services/utility';
-import ProfileDots from './ProfileDots';
-import DropShadow from 'react-native-drop-shadow';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserDetails } from '../../../redux/actions/common';
-import { NAVIGATION_SCREENS } from '../../../navigators/constants';
+import customStyling from '../../../shared/services/styles';
 
 const H = Dimensions.get('window').height;
 const W = Dimensions.get('window').width;
 
-const Carousel = ({
-  data,
-  navigation,
-  renderItem = () => {},
-  // selectedValue = 0,
-  // setSelectedValue = () => {},
-}) => {
-  const dispatch = useDispatch() 
-  const [opacity, setOpacity] = useState(1);
+const Carousel = ({data, renderItem = () => {}}) => {
   const [increment, setIncrement] = useState(-0.01);
-  const [selectedValue,setSelectedValue] = useState(0)
+  const [selectedValue, setSelectedValue] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,50 +37,6 @@ const Carousel = ({
   const handlePageChange = index => {
     setSelectedValue(index);
   };
-
-  // const renderItem = ({item, index}) => (
-  //   <DropShadow
-  //     key={index}
-  //     style={{
-  //       shadowOpacity: opacity,
-  //       shadowColor: item.imgColor,
-  //       shadowRadius: 80,
-  //       borderRadius: 50,
-  //       backgroundColor: 'transparent',
-  //     }}>
-  //     <View key={index} style={[styles.profileContainer]}>
-  //       <ProfileDots
-  //         color={item.imgColor}
-  //         centerSvg={item.image(_scaleText(H * 0.15).fontSize)}
-  //       />
-  //       {item.image(
-  //         _scaleText(H * (Platform.OS == 'android' ? 0.25 : 0.15)).fontSize,
-  //       )}
-  //     </View>
-  //   </DropShadow>
-  // );
-
-  const renderPagination = () => (
-    <View style={styles.paginationContainer}>
-      {data.map((_, index) => (
-        <TouchableOpacity
-          key={index}
-          style={[styles.paginationDot(index === selectedValue)]}
-          onPress={() => handlePageChange(index)}
-        />
-      ))}
-    </View>
-  );
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerShown: true,
-  //     headerTitle: () => renderPagination(),
-  //     headerTitleAlign: 'center',
-  //     headerStyle: {
-  //       backgroundColor: 'transparent',
-  //     },
-  //   });
-  // }, [navigation, selectedValue]);
 
   return (
     <View style={styles.container}>

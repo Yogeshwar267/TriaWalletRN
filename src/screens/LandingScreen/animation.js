@@ -5,25 +5,17 @@ import {Shadow} from 'react-native-shadow-2';
 import styles from './styles';
 import {images} from '../../shared';
 import {_scaleText} from '../../shared/services/utility';
+import { isTablet } from 'react-native-device-info';
 
 function LandingAnimation() {
-  // const logos = [
-  //   ICONS.BLUR_FANTOM(30),
-  //   ICONS.BLUR_POLYGON(50),
-  //   ICONS.BLUR_CELO(45),
-  //   ICONS.BLUR_BTC_STACKS(30),
-  //   ICONS.BLUR_OPTIMISM(40),
-  //   ICONS.BLUR_ETHEREUM(55),
-  //   ICONS.BLUR_BINANCE(40),
-  // ];
   const logos = [
-    {image: images.BLUR_FANTOM, size: 30},
-    {image: images.BLUR_POLYGON, size: 50},
-    {image: images.BLUR_CELO, size: 45},
-    {image: images.BLUR_BTC_STACKS, size: 30},
-    {image: images.BLUR_OPTIMISM, size: 40},
-    {image: images.BLUR_ETHEREUM, size: 55},
-    {image: images.BLUR_BINANCE, size: 40},
+    {image: images.BLUR_FANTOM, size: isTablet() ? 30* 1.5 :  30},
+    {image: images.BLUR_POLYGON, size: isTablet() ? 50* 1.5 :  50},
+    {image: images.BLUR_CELO, size: isTablet() ? 45* 1.5 :  45},
+    {image: images.BLUR_BTC_STACKS, size: isTablet() ? 30* 1.5 :  30},
+    {image: images.BLUR_OPTIMISM, size: isTablet() ? 40* 1.5 :  40},
+    {image: images.BLUR_ETHEREUM, size: isTablet() ? 55* 1.5 :  55},
+    {image: images.BLUR_BINANCE, size: isTablet() ? 40* 1.5 :  40},
   ];
   const radius = Dimensions.get('screen').width / 3;
   const angle = (2 * Math.PI) / logos.length;
@@ -42,9 +34,9 @@ function LandingAnimation() {
       fadeInAnimations.map(anim =>
         Animated.timing(anim, {
           toValue: 1,
-          duration: 1000, // Adjust the duration as needed
+          duration: 1000, 
           easing: Easing.linear,
-          useNativeDriver: true, // Make sure to set this to true for better performance
+          useNativeDriver: true,
         }),
       ),
     ).start();
@@ -71,16 +63,16 @@ function LandingAnimation() {
           },
         ]}>
         <Shadow
-          paintInside={true}
           style={{
-            shadowColor:"#B28EFF",
-            shadowOffset: {width: 5, height: 5},
-            shadowOpacity: 0.4,
+            shadowColor: '#B28EFF',
+            shadowOffset: {width: isTablet() ? 15 : 5, height:isTablet() ? 15 : 5},
+            shadowOpacity: isTablet() ? 0.2 : 0.4,
             shadowRadius: 15,
             borderRadius: 20,
-            elevation:15,
+            elevation: isTablet() ? 40 : 15,
+            backgroundColor: 'transparent',
           }}>
-            {ICONS.TRIA_LOGO(100)}
+          {ICONS.TRIA_LOGO( isTablet() ? 160: 100)}
         </Shadow>
       </Animated.View>
       <View style={circleStyles}>
@@ -102,7 +94,6 @@ function LandingAnimation() {
                 logoStyle,
                 {opacity: fadeInAnimations[index]},
               ]}>
-              {/* {logo} */}
               <Image
                 source={logo.image}
                 style={{

@@ -1,6 +1,6 @@
 import {Animated, Dimensions, Pressable, Text, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-import {images} from '../../shared';
+import {CREATE_PROFILE, images} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {_scaleText, isIpad} from '../../shared/services/utility';
 import styles from './styles';
@@ -16,13 +16,15 @@ import IdentityCardSvg from '../../components/atoms/CustomCardSvg';
 import ColorSvg from './ColorSvg';
 import IdentityActionSheet from './ActionSheet';
 import {isTablet} from 'react-native-device-info';
+import { NAVIGATION_SCREENS } from '../../navigators/constants';
+import customStyling from '../../shared/services/styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
+const IdentityCard = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
-  const actionSheet = useRef();
   const H = Dimensions.get('window').height;
   const W = Dimensions.get('window').width;
   const [selectedValue, setSelectedValue] = useState({
@@ -31,26 +33,7 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
   });
 
   const userDetails = useSelector(state => state.common.userDetails);
-
-  const [opacity, setOpacity] = useState(1);
-  const [increment, setIncrement] = useState(-0.01);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOpacity(prevOpacity => {
-        const newOpacity = prevOpacity + increment;
-        if (newOpacity <= 0 || newOpacity >= 1.5) {
-          setIncrement(prevIncrement => -prevIncrement);
-        }
-
-        return Math.max(0, Math.min(1, newOpacity));
-      });
-    }, 20);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [increment]);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const onNext = () => {
     dispatch(
@@ -59,17 +42,9 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
         identity: selectedValue,
       }),
     );
-    actionSheet.current.hide();
-    setSelected(prev => prev + 1);
-  };
+    navigation.navigate(NAVIGATION_SCREENS.THEME_SELECTION)
 
-  useEffect(() => {
-    if (
-      !actionSheet.current.isOpen() &&
-      (actionSheet.current?.show || reRender)
-    )
-      actionSheet.current.show();
-  }, [actionSheet.current, reRender]);
+  };
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -84,21 +59,6 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
       useNativeDriver: true,
     }).start();
   }, [fadeAnim, buttonAnim]);
-
-  const animatedButtonStyle = {
-    opacity: buttonAnim,
-    transform: [
-      {
-        translateY: buttonAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [50, 0],
-        }),
-      },
-    ],
-  };
-  useEffect(() => {
-    if (actionSheet.current?.show) actionSheet.current.show();
-  }, [actionSheet.current]);
 
   const renderColors = () => (
     <View style={[styles.colorContainer]}>
@@ -115,10 +75,34 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
     </View>
   );
 
-  return (
-    <View style={styles.container}>
-      <RadialGradient color={selectedValue.imgColor || '#7F43FF'} />
+  const renderMiddleHeader = () => (
+    <View style={customStyling.paginationContainer}>
+      {CREATE_PROFILE.map((_, index) => (
+        <View
+          key={index}
+          style={[customStyling.paginationDot(index === 1)]}
+          //   onPress={() => handlePageChange(index)}
+        />
+      ))}
+    </View>
+  );
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: 'center',
+      headerShown: true,
+      headerTransparent: true,
+      headerTitle: () => renderMiddleHeader(),
+      headerStyle: {
+        backgroundColor: '#0000',
+      },
+    });
+  }, [navigation]);
+
+
+  return (
+    <SafeAreaView style={customStyling.containerWithHeader}>
+      <RadialGradient color={selectedValue.imgColor || '#7F43FF'} />
       <Radial
         style={{width: W, height: H, position: 'absolute'}}
         colors={[
@@ -128,16 +112,16 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
         stops={[0, 1]}
         center={[W * 0.5, H * 0.7]}
         radius={300}></Radial>
-      <Animated.View style={[styles.subContainer, {opacity: fadeAnim}]}>
-        <View style={[styles.profileContainer]}>
+      <Animated.View style={[customStyling.subContainer, {opacity: fadeAnim}]}>
           <IdentityCardSvg
             startColor={selectedValue.imgColor}
             stopColor={selectedValue.gradientColor}
           />
-          <View style={styles.profileSvg}>
+        <View style={[customStyling.profileContainer]}>
+          <View style={customStyling.profileSvg}>
             <QRCodeStyled
               data={'Simple QR Code'}
-              style={{backgroundColor: 'transparent', position: 'absolute'}}
+              style={{backgroundColor: 'transparent', position: 'absolute',}}
               color={'#FFF'}
               padding={20}
               pieceSize={
@@ -147,7 +131,7 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
                     : isTablet()
                     ? 10
                     : Platform.OS == 'android'
-                    ? 11
+                    ? 10.5
                     : 8,
                 ).fontSize
               }
@@ -181,27 +165,17 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
             </View>
           </View>
           <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'space-between',
-              bottom: _scaleText(
-                isTablet && Platform.OS == 'android' ? 100 : Platform.OS == 'android' ? 60 : 80,
-              ).fontSize,
-              width: W * (isTablet ? 0.45 : 0.7),
-              paddingLeft: _scaleText(40).fontSize,
-              paddingRight: _scaleText(30).fontSize,
-              flexDirection: 'row',
-            }}>
+            style={customStyling.cardText}>
             <View>
               <Text
                 style={[
                   styles.whiteText,
                   TEXT_STYLES.H1,
-                  {marginTop: _scaleText(10).fontSize},
+                  {marginTop: _scaleText(10).fontSize,fontFamily: 'Cabrion-Regular'},
                 ]}>
                 {userDetails.userName}@tria
               </Text>
-              <Text style={[TEXT_STYLES.H5, styles.whiteText]}>{'150 XP'}</Text>
+              <Text style={[TEXT_STYLES.H5, styles.whiteText,{fontFamily: 'Cabrion-Regular'}]}>{'150 XP'}</Text>
             </View>
             <View
               style={{
@@ -214,12 +188,13 @@ const IdentityCard = ({reRender = false, selected, setSelected = () => {}}) => {
         </View>
       </Animated.View>
       <IdentityActionSheet
-        setRef={ref => (actionSheet.current = ref)}
         setSelectedValue={setSelectedValue}
         renderItem={renderColors}
         onNext={onNext}
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

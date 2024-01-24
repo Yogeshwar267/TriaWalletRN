@@ -54,6 +54,8 @@ export const STRINGS = {
   BUY: 'Buy',
   SEND: 'Send',
   CONVERT: 'Convert',
+  DARK_MODE:"Dark mode",
+  LIGHT_MODE:"Light mode",
 };
 
 export const REGEX = {

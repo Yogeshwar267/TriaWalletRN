@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
     paddingRight: _scaleText(10).fontSize,
-    paddingLeft: _scaleText(20).fontSize,
+    paddingLeft: _scaleText(15).fontSize,
     marginVertical: _scaleText(5).fontSize,
     borderRadius: _scaleText(12).fontSize,
     // alignItems: 'center',

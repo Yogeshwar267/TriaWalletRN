@@ -70,18 +70,32 @@ const ThemeSelection = () => {
   const renderColors = () => (
     <View style={[styles.colorContainer]}>
       <Pressable
-        style={{paddingHorizontal: 15}}
+        style={{paddingHorizontal: 15,alignItems:"center"}}
         onPress={() => onThemePress(true, 'default')}>
         {!true
           ? ICONS.DARK_MODE_TRUE(isTablet() ? 160 : 130)
           : ICONS.DARK_MODE_FALSE(isTablet() ? 60 : 50)}
+        <Text
+          style={[
+            Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
+            styles.GUEST_TEXT,{fontWeight:700}
+          ]}>
+          {STRINGS.DARK_MODE}
+        </Text>
       </Pressable>
       <Pressable
-        style={{paddingHorizontal: 15}}
+        style={{paddingHorizontal: 15,alignItems:"center"}}
         onPress={() => onThemePress(false, 'default')}>
         {true
           ? ICONS.LIGHT_MODE_FALSE(isTablet() ? 65 : 50)
           : ICONS.LIGHT_MODE_TRUE(isTablet() ? 120 : 100)}
+           <Text
+          style={[
+            Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
+            styles.GUEST_TEXT,
+          ]}>
+          {STRINGS.LIGHT_MODE}
+        </Text>
       </Pressable>
     </View>
   );
@@ -123,10 +137,10 @@ const ThemeSelection = () => {
         center={[W * 0.5, H * 0.7]}
         radius={300}></Radial>
       <Animated.View style={[customStyling.subContainer, {opacity: fadeAnim}]}>
-          <IdentityCardSvg
-            startColor={selectedValue.imgColor}
-            stopColor={selectedValue.gradientColor}
-          />
+        <IdentityCardSvg
+          startColor={selectedValue.imgColor}
+          stopColor={selectedValue.gradientColor}
+        />
         <View style={[customStyling.profileContainer]}>
           <View style={customStyling.profileSvg}>
             <QRCodeStyled
@@ -175,8 +189,7 @@ const ThemeSelection = () => {
               )}
             </View>
           </View>
-          <View
-            style={customStyling.cardText}>
+          <View style={customStyling.cardText}>
             <View>
               <Text
                 style={[

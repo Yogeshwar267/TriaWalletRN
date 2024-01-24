@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   GUEST_TEXT: {
     color: 'rgba(255,255,255, 0.4)',
     marginBottom: _scaleText(10).fontSize,
-
     fontFamily: 'Cabrion-Regular',
   },
   placeholder: {
@@ -267,7 +266,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
     marginTop: _scaleText(Platform.OS == 'android' ? 15 : 5).fontSize,
-    marginBottom: _scaleText(15).fontSize
+    marginBottom: _scaleText(10).fontSize
   }
 });
 

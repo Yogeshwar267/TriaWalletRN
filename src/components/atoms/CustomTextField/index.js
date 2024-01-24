@@ -29,7 +29,7 @@ const CustomTextField = ({
   subText = '',
   iconSvg = () => {},
   iconImgSrc = '',
-  type = '',
+  type = 'none',
   label = '',
   subLabel = '',
   enabled = true,
@@ -105,7 +105,7 @@ const CustomTextField = ({
             style={[
               TEXT_STYLES.FM2,
               styles.placeholder,
-              !enabled ? styles.disabledText : {left:-_scaleText(20).fontSize},
+              !enabled ? styles.disabledText : {left:-_scaleText(15).fontSize},
             ]}>
             {subText}
           </Text>

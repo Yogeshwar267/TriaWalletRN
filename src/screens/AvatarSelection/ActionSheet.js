@@ -62,7 +62,7 @@ const AvatarActionSheet = ({
         <Text
           style={[
             Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
-            styles.GUEST_TEXT,
+            styles.GUEST_TEXT,  {marginTop: _scaleText(10).fontSize}
           ]}>
           {STRINGS.AVATAR_CHANGE}
         </Text>

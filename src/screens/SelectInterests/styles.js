@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   GUEST_TEXT: {
     color: 'rgba(255,255,255, 0.4)',
-    marginVertical: _scaleText(10).fontSize,
+    marginBottom: _scaleText(10).fontSize,
     fontFamily: 'Cabrion-Regular',
   },
   placeholder: {
@@ -249,13 +249,11 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   profileContainer: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     alignContent: 'center',
     width: '100%',
     height: '60%',
-    borderWidth: 2,
-    borderColor: 'white',
   },
   profileSvg: {
     width: W,
@@ -270,7 +268,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '40%',
     justifyContent: 'space-evenly',
-
+    marginTop: _scaleText(5).fontSize,
+    marginBottom: _scaleText(15).fontSize,
     paddingHorizontal: _scaleText(20).fontSize,
   },
   chips: color => ({
@@ -294,17 +293,17 @@ const styles = StyleSheet.create({
     ).fontSize,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: _scaleText(5).fontSize,
+    marginBottom: _scaleText(15).fontSize
   },
   chipsContainerIdentity: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: W * (isIpad() ? 0.4 : isTablet() ? 0.45 : 0.6),
 
-    paddingHorizontal: _scaleText(20).fontSize,
+    paddingHorizontal: _scaleText(25).fontSize,
 
-    marginVertical: _scaleText(10).fontSize,
-    position: 'absolute',
-    top: _scaleText(Platform.OS == 'android' ? 120 : 130).fontSize,
+    marginVertical: _scaleText(20).fontSize,
   },
   chipsTextIdentity: {
     paddingHorizontal: _scaleText(Platform.OS == 'android' ? 10 : 10).fontSize,

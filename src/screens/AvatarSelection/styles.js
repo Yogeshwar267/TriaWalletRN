@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   GUEST_TEXT: {
     color: 'rgba(255,255,255, 0.4)',
-    marginVertical: _scaleText(10).fontSize,
+    marginBottom: _scaleText(10).fontSize,
     fontFamily: 'Cabrion-Regular',
   },
   placeholder: {
@@ -167,7 +167,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems:"center",
-    marginVertical: _scaleText(5).fontSize
+    marginTop: _scaleText(5).fontSize,
+    marginBottom: _scaleText(15).fontSize
   },
   galleryButton: {
     marginRight: 12

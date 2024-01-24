@@ -105,7 +105,7 @@ const CustomTextField = ({
             style={[
               TEXT_STYLES.FM2,
               styles.placeholder,
-              !enabled ? styles.disabledText : {},
+              !enabled ? styles.disabledText : {left:-_scaleText(20).fontSize},
             ]}>
             {subText}
           </Text>

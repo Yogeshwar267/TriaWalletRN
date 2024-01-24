@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
   },
   secondaryTextInputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.15)',
-    paddingHorizontal: _scaleText(10).fontSize,
+    paddingRight: _scaleText(10).fontSize,
+    paddingLeft: _scaleText(20).fontSize,
     marginVertical: _scaleText(5).fontSize,
     borderRadius: _scaleText(12).fontSize,
     // alignItems: 'center',
@@ -217,6 +218,7 @@ const styles = StyleSheet.create({
   passIcon: {
     justifyContent: 'center',
     alignItems: 'center',
+    left:-_scaleText(10).fontSize
   },
   disabled:{
     pointerEvents:"none",

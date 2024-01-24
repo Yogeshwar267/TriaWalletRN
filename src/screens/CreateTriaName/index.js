@@ -201,7 +201,7 @@ const CreateTriaName = () => {
                     ? _scaleText(0).fontSize
                     : _scaleText(15).fontSize,
                   top: isKeyboardVisible
-                    ? _scaleText(420).fontSize
+                    ? _scaleText(H *0.56).fontSize
                     : _scaleText(0),
                 }
               : {},

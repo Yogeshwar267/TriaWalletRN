@@ -142,7 +142,7 @@ const IdentityCard = () => {
               innerEyesOptions={{borderRadius: _scaleText(5).fontSize}}
               logo={{
                 href: images.BLUR_BINANCE,
-                data: userDetails.avatar.image(
+                data: userDetails?.avatar?.image(
                   _scaleText(H * (Platform.OS == 'android' ? 0.05 : 0.015))
                     .fontSize,
                 ),
@@ -156,10 +156,10 @@ const IdentityCard = () => {
             />
             <View
               style={{
-                backgroundColor: userDetails.avatar.imgColor,
+                backgroundColor: userDetails?.avatar?.imgColor,
                 borderRadius: 10,
               }}>
-              {userDetails.avatar.image(
+              {userDetails?.avatar?.image(
                 _scaleText(isIpad() ? 80 : Platform.OS == 'android' ? 60 : 50).fontSize,
               )}
             </View>
@@ -173,7 +173,7 @@ const IdentityCard = () => {
                   TEXT_STYLES.H1,
                   {marginTop: _scaleText(10).fontSize,fontFamily: 'Cabrion-Regular'},
                 ]}>
-                {userDetails.userName}@tria
+                {userDetails?.userName}@tria
               </Text>
               <Text style={[TEXT_STYLES.H5, styles.whiteText,{fontFamily: 'Cabrion-Regular'}]}>{'150 XP'}</Text>
             </View>

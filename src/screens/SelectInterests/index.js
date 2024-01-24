@@ -106,7 +106,7 @@ const InterestSelection = () => {
         <Pressable style={styles.xpContainer} hitSlop={_scaleText(26).fontSize}>
           <View style={styles.sparkles}>
             {ICONS.SPARKLES(
-              _scaleText(Platform.OS == 'android' ? 25 : 20).fontSize,
+              _scaleText(Platform.OS == 'android' ? 21 : 20).fontSize,
             )}
           </View>
           <Text style={styles.xpText}>25 XP</Text>
@@ -135,7 +135,7 @@ const InterestSelection = () => {
         radius={300}></Radial>
       <Animated.View style={[customStyling.subContainer, {opacity: fadeAnim}]}>
         <IdentityCardSvg startColor={'#101010'} stopColor={'#101010'} />
-        <View style={[customStyling.profileContainer]}>
+        <View style={[styles.profileContainer]}>
           <View
             style={{
               justifyContent: 'space-between',

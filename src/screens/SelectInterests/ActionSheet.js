@@ -70,7 +70,7 @@ const InterestsActionSheet = ({
         <Text
           style={[
             Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
-            styles.GUEST_TEXT,
+            styles.GUEST_TEXT,{marginTop: _scaleText(10).fontSize}
           ]}>
           {STRINGS.INTERESTS_SELECT_SUBHEADING}
         </Text>

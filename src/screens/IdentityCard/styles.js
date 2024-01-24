@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   GUEST_TEXT: {
     color: 'rgba(255,255,255, 0.4)',
-    marginVertical: _scaleText(10).fontSize,
+    marginBottom: _scaleText(10).fontSize,
     fontFamily: 'Cabrion-Regular',
   },
   placeholder: {
@@ -279,9 +279,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-evenly',
-    // marginVertical: _scaleText(
-    //   isTablet() ? 40 : Platform.OS == 'android' ? 25 : 10,
-    // ).fontSize,
+    marginTop: _scaleText(15).fontSize,
+    marginBottom: _scaleText(15).fontSize,
     paddingHorizontal: _scaleText(20).fontSize,
   },
 });

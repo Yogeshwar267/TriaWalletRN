@@ -48,14 +48,14 @@ const IdentityActionSheet = ({
           style={[
             styles.whiteText,
             TEXT_STYLES.H2,
-            {marginTop: _scaleText(10).fontSize},
+            {marginTop: _scaleText(5).fontSize},
           ]}>
           {STRINGS.WALLET_COLOR}
         </Text>
         <Text
           style={[
             Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
-            styles.GUEST_TEXT,
+            styles.GUEST_TEXT,{marginTop: _scaleText(10).fontSize}
           ]}>
           {STRINGS.WALLET_COLOR_SUBHEADING}
         </Text>

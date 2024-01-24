@@ -101,6 +101,20 @@ const CreatePassword = () => {
     };
   }, []);
 
+  const animatedButtonStyle = useMemo(() => {
+    return {
+      opacity: buttonAnim,
+      transform: [
+        {
+          translateY: buttonAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [50, 0],
+          }),
+        },
+      ],
+    };
+  }, [buttonAnim]);
+
   return (
     <SafeAreaView style={[Layout.fill, {backgroundColor: 'black',marginTop: _scaleText(15).fontSize}]}>
       <Animated.View
@@ -223,7 +237,7 @@ const CreatePassword = () => {
               ? {
                   bottom:
                     isKeyboardVisible && Platform.OS === 'android'
-                      ? _scaleText(20).fontSize
+                      ? _scaleText(50).fontSize
                       : 0,
                 }
               : {},

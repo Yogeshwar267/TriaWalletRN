@@ -45,8 +45,8 @@ const ColorSvg = ({color, isSelected}) => {
               height="36"
               rx="18"
               stroke="white"
-              stroke-opacity="0.79"
-              stroke-width="6"
+              strokeOpacity="0.5"
+              strokeWidth="6"
             />
             <G
               style="mix-blend-mode:plus-lighter"

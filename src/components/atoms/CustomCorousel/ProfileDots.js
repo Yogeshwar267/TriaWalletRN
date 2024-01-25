@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import { isTablet } from 'react-native-device-info';
-import Svg, {Circle, Ellipse, G, Image} from 'react-native-svg';
+import Svg, {Circle, Ellipse, G } from 'react-native-svg';
 
 const ProfileDots = ({color}) => {
   return (

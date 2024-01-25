@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -8,8 +8,6 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {_scaleText} from '../../../shared/services/utility';
 
 const KeyboardAwareView = ({children}) => {
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
-
   return (
     <>
       {Platform.OS === 'android' ? (

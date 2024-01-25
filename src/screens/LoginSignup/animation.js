@@ -14,7 +14,7 @@ const duration = 2500;
 
 function Logo({ icon, translateY, rotateZ }) {
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }, { rotateZ: rotateZ.value }],
+    transform: [{ translateY: translateY.value }],
   }));
 
   return (
@@ -28,10 +28,10 @@ function Logo({ icon, translateY, rotateZ }) {
 function ScreenAnimation() {
   const H = Dimensions.get('window').height;
 
-  const containerHeight =_scaleText( isIpad() ? Dimensions.get("screen").height * 0.50 : H *  0.35).fontSize
+  // const containerHeight =_scaleText( isIpad() ? Dimensions.get("screen").height * 0.18 : H *  0.15).fontSize
 
   const defaultAnimY = useSharedValue(0);
-  const moveUp = useSharedValue(_scaleText(containerHeight * (Platform.OS == 'android' ? 0.6 : 0.5)).fontSize);
+  const moveUp = useSharedValue(_scaleText(Platform.OS == 'android' ? 0.23 : 0.3).fontSize);
   const rotation = useSharedValue('-50deg');
   const moveDown = useSharedValue(0);
 
@@ -51,13 +51,13 @@ function ScreenAnimation() {
       true
     );
     moveUp.value = withRepeat(
-      withTiming(moveUp.value - containerHeight * 0.27, { duration, easing: Easing.linear }),
+      withTiming(moveUp.value + 30, { duration, easing: Easing.linear }),
       -1,
       true
     );
 
     moveDown.value = withRepeat(
-      withTiming(moveDown.value + containerHeight * 0.27, { duration, easing: Easing.linear }),
+      withTiming(moveDown.value - 30, { duration, easing: Easing.linear }),
       -1,
       true
     );
@@ -84,14 +84,18 @@ export default ScreenAnimation;
 
 const styles = StyleSheet.create({
   container: {
-    height: '50%',
+    flex:1,
+    // height: '50%',
     width: '100%',
-    marginTop: _scaleText(0).fontSize,
+    // marginTop: _scaleText(0).fontSize,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    alignSelf:"center",
+    alignContent:"center",
+    alignItems:"center"
   },
   box: {
-    width: 50,
-    height: 50,
+    // width: 50,
+    // height: 50,
   },
 });

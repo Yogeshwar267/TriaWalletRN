@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     marginTop: _scaleText(10).fontSize,
-    marginBottom: _scaleText(20).fontSize,
+    // marginBottom: _scaleText(20).fontSize,
     // borderColor:"white",borderWidth:1
   },
   buttonSubContainer: {
@@ -224,7 +224,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
 

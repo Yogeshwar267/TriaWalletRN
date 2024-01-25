@@ -1,11 +1,10 @@
 //import liraries
 import React, {useEffect, useMemo, useRef} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable,Animated} from 'react-native';
 import styles from './styles';
 import {STRINGS} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {_scaleText} from '../../shared/services/utility';
-import {Animated} from 'react-native';
 import {INTERESTS} from './constants';
 import customStyling from '../../shared/services/styles';
 import BottomSheet from '../../components/atoms/CustomBottomSheet';

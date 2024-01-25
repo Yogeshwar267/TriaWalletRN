@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    marginBottom: _scaleText(20).fontSize
+    // marginBottom: _scaleText(20).fontSize
   },
   buttonSubContainer: {
     alignSelf: 'center',
@@ -213,7 +213,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
   },
@@ -265,7 +264,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"center",
     alignItems:"center",
-    marginTop: _scaleText(Platform.OS == 'android' ? 15 : 5).fontSize,
+    marginTop: _scaleText(Platform.OS == 'android' ? 8 : 5).fontSize,
     marginBottom: _scaleText(10).fontSize
   }
 });

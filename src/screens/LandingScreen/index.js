@@ -1,4 +1,4 @@
-import {Animated, Pressable, Text, View} from 'react-native';
+import { Animated, Pressable, Text, View, Platform } from 'react-native';
 import React, {useEffect, useMemo, useRef} from 'react';
 import LandingAnimation from './animation';
 import {STRINGS} from '../../shared';
@@ -51,7 +51,7 @@ const LandingScreen = () => {
           style={[
             styles.whiteText,
             styles.titleText,
-            TEXT_STYLES.H3,
+            Platform.OS == 'android' ? TEXT_STYLES.H2 : TEXT_STYLES.H3,
             {opacity: fadeAnim},
           ]}>
           {STRINGS.EXPERIENCE_OMNI}
@@ -77,7 +77,7 @@ const LandingScreen = () => {
             <Animated.Text
               style={[
                 styles.whiteText,
-                TEXT_STYLES.H3,
+                Platform.OS == 'android' ? TEXT_STYLES.H2 :TEXT_STYLES.H3,
                 {
                   textAlign: 'center',
                   marginTop: _scaleText(5).fontSize,
@@ -98,7 +98,7 @@ const LandingScreen = () => {
                     opacity: pressed ? 0.8 : 1,
                   },
                 ]}>
-                <Text style={[TEXT_STYLES.H3, styles.buttonText]}>
+                <Text style={[Platform.OS == 'android' ? TEXT_STYLES.H2 :TEXT_STYLES.H3, styles.buttonText]}>
                   {STRINGS.GET_STARTED}
                 </Text>
               </Pressable>
@@ -112,7 +112,7 @@ const LandingScreen = () => {
               },
             ]}>
             <Animated.Text
-              style={[TEXT_STYLES.H4, styles.GUEST_TEXT, animatedButtonStyle]}>
+              style={[Platform.OS == 'android' ? TEXT_STYLES.H3 :TEXT_STYLES.H4, styles.GUEST_TEXT, animatedButtonStyle]}>
               {STRINGS.CONTINUE_AS_GUEST}
             </Animated.Text>
           </Pressable>

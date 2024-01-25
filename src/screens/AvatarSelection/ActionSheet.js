@@ -1,12 +1,11 @@
 //import liraries
 import React, {useEffect, useMemo, useRef} from 'react';
-import {View, Text, Dimensions, Image, Pressable} from 'react-native';
+import {View, Text, Dimensions, Pressable,Animated} from 'react-native';
 import styles from './styles';
 import {STRINGS} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {ICONS} from '../../shared/constants/icons';
 import {_scaleText} from '../../shared/services/utility';
-import {Animated} from 'react-native';
 import {isTablet} from 'react-native-device-info';
 import customStyling from '../../shared/services/styles';
 import BottomSheet from '../../components/atoms/CustomBottomSheet';
@@ -80,7 +79,7 @@ const AvatarActionSheet = ({
           onPress={() => setSelectedValue(Math.floor(Math.random() * 7))}>
           <View style={{position: 'absolute'}}>
             {ICONS.REGENARATE_BORDER(
-              W * (isTablet() ? 0.45 : Platform.OS == 'android' ? 0.6 : 0.6),
+              W * (isTablet() ? 0.45 : 0.6),
             )}
           </View>
           <View style={styles.regeneratePressable}>

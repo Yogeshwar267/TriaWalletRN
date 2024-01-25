@@ -1,21 +1,14 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { StyleSheet} from 'react-native';
 import Svg, {
-  Circle,
-  Ellipse,
   G,
-  Image,
   Rect,
   Path,
   Defs,
-  LinearGradient,
-  Stop,
-  Pattern,
   ClipPath,
 } from 'react-native-svg';
 
-// create a component
 const ColorSvg = ({color, isSelected}) => {
   return (
     <>

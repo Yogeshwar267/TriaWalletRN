@@ -146,9 +146,9 @@ const IdentityCard = () => {
                   _scaleText(H * (Platform.OS == 'android' ? 0.05 : 0.015))
                     .fontSize,
                 ),
-                width: _scaleText(H * (Platform.OS == 'android' ? 0.15 : 0.15))
+                width: _scaleText(H * 0.15)
                   .fontSize,
-                height: _scaleText(H * (Platform.OS == 'android' ? 0.15 : 0.15))
+                height: _scaleText(H * 0.15)
                   .fontSize,
                 scale: 4,
                 opacity: 0,

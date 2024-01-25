@@ -1,5 +1,5 @@
-import {Animated, Dimensions, Pressable, Text, View} from 'react-native';
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {Animated, Dimensions, Platform, Pressable, Text, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import {CREATE_PROFILE, STRINGS, images} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {_scaleText, isIpad} from '../../shared/services/utility';
@@ -74,7 +74,7 @@ const ThemeSelection = () => {
         onPress={() => onThemePress(true, 'default')}>
         {!true
           ? ICONS.DARK_MODE_TRUE(isTablet() ? 160 : 130)
-          : ICONS.DARK_MODE_FALSE(isTablet() ? 60 : 50)}
+          : ICONS.DARK_MODE_FALSE(isTablet() ? 60 : Platform.OS == 'android' ? 40 : 45)}
         <Text
           style={[
             Platform.OS == 'android' ? TEXT_STYLES.H4 : TEXT_STYLES.H5,
@@ -87,7 +87,7 @@ const ThemeSelection = () => {
         style={{paddingHorizontal: 15,alignItems:"center"}}
         onPress={() => onThemePress(false, 'default')}>
         {true
-          ? ICONS.LIGHT_MODE_FALSE(isTablet() ? 65 : 50)
+          ? ICONS.LIGHT_MODE_FALSE(isTablet() ? 65 : Platform.OS == 'android' ? 40 : 45)
           : ICONS.LIGHT_MODE_TRUE(isTablet() ? 120 : 100)}
            <Text
           style={[
@@ -170,9 +170,9 @@ const ThemeSelection = () => {
                   _scaleText(H * (Platform.OS == 'android' ? 0.05 : 0.015))
                     .fontSize,
                 ),
-                width: _scaleText(H * (Platform.OS == 'android' ? 0.15 : 0.15))
+                width: _scaleText(H * 0.15)
                   .fontSize,
-                height: _scaleText(H * (Platform.OS == 'android' ? 0.15 : 0.15))
+                height: _scaleText(H * 0.15)
                   .fontSize,
                 scale: 4,
                 opacity: 0,
@@ -184,8 +184,7 @@ const ThemeSelection = () => {
                 borderRadius: 10,
               }}>
               {userDetails.avatar.image(
-                _scaleText(isIpad() ? 80 : Platform.OS == 'android' ? 60 : 50)
-                  .fontSize,
+                _scaleText(isIpad() ? 80 : Platform.OS == 'android' ? 60 : 50).fontSize,
               )}
             </View>
           </View>

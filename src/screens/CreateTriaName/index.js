@@ -89,7 +89,7 @@ const CreateTriaName = () => {
     navigation.setOptions({
       headerShown: true,
       headerTitleAlign: 'center',
-      headerRight: ({}) => (
+      headerRight: () => (
         <Pressable
           style={{
             paddingHorizontal: _scaleText(Platform.OS == 'android' ? 30 : 15)

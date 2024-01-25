@@ -58,7 +58,7 @@ const customStyling = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    bottom: _scaleText(15).fontSize,
+    bottom: _scaleText(20).fontSize,
     position: 'absolute',
     marginTop: _scaleText(40).fontSize,
   },
@@ -93,7 +93,7 @@ const customStyling = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     marginTop: _scaleText(
-      isIpad() ? 78 : isTablet() ? 60 : Platform.OS == 'android' ? 63 : 78,
+      isIpad() ? 78 : isTablet() ? 90 : Platform.OS == 'android' ? 63 : 53,
     ).fontSize,
   },
   cardText: {

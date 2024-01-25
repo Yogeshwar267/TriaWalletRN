@@ -1,20 +1,12 @@
 //import liraries
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Svg, {
-  Circle,
-  Ellipse,
   G,
-  Image,
   Rect,
   Path,
   Defs,
   LinearGradient,
   Stop,
-  Pattern,
-  ClipPath,
-  Filter,
-  FeGaussianBlur,
   SvgXml,
 } from 'react-native-svg';
 

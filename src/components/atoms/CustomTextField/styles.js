@@ -1,6 +1,5 @@
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 import {_scaleText} from '../../../shared/services/utility';
-import {TEXT_STYLES} from '../../../shared/constants/styles';
 
 const H = Dimensions.get('window').height;
 const W = Dimensions.get('window').width;
@@ -191,7 +190,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
   },

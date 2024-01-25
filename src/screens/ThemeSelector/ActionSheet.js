@@ -4,12 +4,12 @@ import {
   View,
   Text,
   Pressable,
+  Animated
 } from 'react-native';
 import styles from './styles';
-import {STRINGS, images} from '../../shared';
+import {STRINGS} from '../../shared';
 import {TEXT_STYLES} from '../../shared/constants/styles';
 import {_scaleText} from '../../shared/services/utility';
-import {Animated} from 'react-native';
 import customStyling from '../../shared/services/styles';
 import BottomSheet from '../../components/atoms/CustomBottomSheet';
 

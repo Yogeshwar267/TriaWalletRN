@@ -1,25 +1,19 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { StyleSheet} from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import Svg, {
-  Circle,
-  Ellipse,
   G,
-  Image,
   Rect,
   Path,
   Defs,
-  LinearGradient,
-  Stop,
-  Pattern,
   ClipPath,
 } from 'react-native-svg';
 import { _scaleText } from '../../shared/services/utility';
 
 // create a component
 const ColorSvg = ({color, isSelected}) => {
-  const diameter = _scaleText(isTablet() ? 75 : 53).fontSize
+  const diameter = _scaleText(isTablet() ? 75 : Platform.OS == 'android' ? 40 : 50 ).fontSize
   return (
     <>
       {isSelected ? (

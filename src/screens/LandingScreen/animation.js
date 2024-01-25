@@ -54,11 +54,6 @@ function LandingAnimation() {
             alignItems: 'center',
             marginTop: _scaleText(10).fontSize,
             marginLeft: _scaleText(10).fontSize,
-            flex: 1,
-            height: '100%',
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
             position: 'absolute',
           },
         ]}>

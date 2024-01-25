@@ -4,11 +4,9 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
-  TouchableOpacity,
 } from 'react-native';
 import {COLORS} from '../../../shared';
 import {_scaleText} from '../../../shared/services/utility';
-import customStyling from '../../../shared/services/styles';
 
 const H = Dimensions.get('window').height;
 const W = Dimensions.get('window').width;
@@ -24,7 +22,6 @@ const Carousel = ({data, renderItem = () => {}}) => {
         if (newOpacity <= 0 || newOpacity >= 1.5) {
           setIncrement(prevIncrement => -prevIncrement);
         }
-
         return Math.max(0, Math.min(1, newOpacity));
       });
     }, 20);
@@ -33,10 +30,6 @@ const Carousel = ({data, renderItem = () => {}}) => {
       clearInterval(interval);
     };
   }, [increment]);
-
-  const handlePageChange = index => {
-    setSelectedValue(index);
-  };
 
   return (
     <View style={styles.container}>

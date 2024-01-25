@@ -198,7 +198,7 @@ const CreatePassword = () => {
           </Animated.View>
 
           <CustomTextField
-            enabled={strength == 2 && password?.length}
+            enabled={strength >0 && password?.length}
             value={confPassword}
             onChange={setConfPassword}
             placeholderText={STRINGS.PASSWORD_PLACEHOLDER}

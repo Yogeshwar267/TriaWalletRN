@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-export default function ({}) {
+export default function () {
     return StyleSheet.create({
         /* Column Layouts */
         column: {

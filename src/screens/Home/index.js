@@ -128,7 +128,7 @@ const HomePage = () => {
               borderRadius: 50,
             }}>
             {userDetails?.avatar?.image(
-              _scaleText(isTablet() ? 40 : Platform.OS == 'android' ? 30 : 30)
+              _scaleText(isTablet() ? 40 : 30)
                 .fontSize,
             )}
           </View>

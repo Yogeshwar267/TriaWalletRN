@@ -194,7 +194,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
 

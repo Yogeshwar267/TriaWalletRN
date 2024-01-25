@@ -1,9 +1,8 @@
 import React, {useEffect, useMemo, useRef} from 'react';
 import {
   View,
-  Easing,
+  Easing,Animated, Platform
 } from 'react-native';
-import { Animated, Platform } from 'react-native';
 import customStyling from '../../../shared/services/styles';
 import {_scaleText} from '../../../shared/services/utility';
 
@@ -13,7 +12,6 @@ const BottomSheet = ({
   setModalVisible = () => {},
   children,
 }) => {
-  const translateY = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -53,7 +51,6 @@ const BottomSheet = ({
           position: 'absolute',
           bottom: -0,
           width: '100%',
-
         },
       ]}
       key={id}>

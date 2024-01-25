@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'yellow',
     width: '100%',
   },
   whiteText: {
@@ -195,7 +193,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
 
-    marginBottom: _scaleText(isIpad() ? 40 : 20).fontSize,
+    marginBottom: _scaleText(isIpad() ? 20 : 0).fontSize,
   },
   buttonSubContainer: {
     alignSelf: 'center',
@@ -216,7 +214,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
   },
@@ -274,15 +271,14 @@ const styles = StyleSheet.create({
   },
   chips: color => ({
     borderColor: color,
-    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 4 : 1)
-      .fontSize,
+    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 4 : 1).fontSize,
     borderRadius: 25,
-    marginVertical: _scaleText(Platform.OS == 'android' ? 7 : 5).fontSize,
+    marginVertical: _scaleText(Platform.OS == 'android' ? 7 : 3).fontSize,
     marginHorizontal: _scaleText(Platform.OS == 'android' ? 5 : 3).fontSize,
   }),
   chipsText: color => ({
     paddingHorizontal: _scaleText(Platform.OS == 'android' ? 13 : 10).fontSize,
-    paddingVertical: _scaleText(Platform.OS == 'android' ? 10 : 4).fontSize,
+    paddingVertical: _scaleText(isIpad() ? 10 : Platform.OS == 'android' ? 8 : 3).fontSize,
     color: color,
   }),
   chipsContainer: {
@@ -306,19 +302,18 @@ const styles = StyleSheet.create({
     marginVertical: _scaleText(20).fontSize,
   },
   chipsTextIdentity: {
-    paddingHorizontal: _scaleText(Platform.OS == 'android' ? 10 : 10).fontSize,
-    paddingVertical: _scaleText(Platform.OS == 'android' ? 8 : 4).fontSize,
+    paddingHorizontal: _scaleText(Platform.OS == 'android' ? 10 : 7).fontSize,
+    paddingVertical: _scaleText(isIpad() ? 10 : Platform.OS == 'android' ? 8 : 3).fontSize,
   },
   chipsIdentity: {
-    borderColor: 'white',
-    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 3.8 : 1)
-      .fontSize,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderWidth: _scaleText(isTablet() ? 1 : Platform.OS == 'android' ? 3.8 : 1).fontSize,
     borderRadius: 25,
     marginVertical: _scaleText(Platform.OS == 'android' ? 8 : 5).fontSize,
     marginHorizontal: _scaleText(Platform.OS == 'android' ? 5 : 2).fontSize,
   },
   xpContainer: {
-    borderWidth: isTablet() ? 2 : Platform.OS == 'android' ? 1 : 1,
+    borderWidth: isTablet() ? 2 : 1,
     borderColor: 'rgba(211, 184, 44, 1)',
     flexDirection: 'row',
     alignItems: 'center',

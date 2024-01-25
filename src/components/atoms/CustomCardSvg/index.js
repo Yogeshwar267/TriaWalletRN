@@ -1,6 +1,6 @@
 //import liraries
-import React, {Component} from 'react';
-import {Dimensions} from 'react-native';
+import React from 'react';
+import {Dimensions, Platform} from 'react-native';
 import Svg, {
   G,
   Image,
@@ -25,7 +25,7 @@ const IdentityCardSvg = ({
   return (
       <Svg
         viewBox="231.016 -7.907 421.738 572.109"
-        width={_scaleText(W * (isTablet() ? 0.4 : 0.6)).fontSize}
+        width={_scaleText(W * (isTablet() ? 0.4 : Platform.OS == "android" ? 0.56 : 0.6)).fontSize}
         height={_scaleText(H * 0.7).fontSize}
         style={{position: 'absolute'}}
         fill="none"

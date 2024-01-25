@@ -125,9 +125,9 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     alignContent: 'center',
     alignItems: 'center',
-    bottom:_scaleText(10).fontSize,
-    position:"absolute",
-    marginTop: _scaleText(40).fontSize,
+    // bottom:_scaleText(10).fontSize,
+    // position:"absolute",
+    // marginTop: _scaleText(40).fontSize,
   },
   buttonSubContainer:{
     alignSelf:"center",
@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
     marginBottom:_scaleText(10).fontSize
   },
   animationContainer:{
-    height:_scaleText(H *0.25).fontSize,
+    flex:1,
+    // height:_scaleText(H *0.25).fontSize,
     width:_scaleText(W *0.85).fontSize
   }
 });

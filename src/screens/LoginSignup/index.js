@@ -11,6 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NAVIGATION_SCREENS} from '../../navigators/constants';
 import {useTheme} from '../../hooks';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import IconAnimation from './animation2';
 
 const renderButtonComponent = (data, animatedButtonStyle) => {
   return data.map((button, index) => {
@@ -34,7 +35,7 @@ const renderButtonComponent = (data, animatedButtonStyle) => {
             {button.icon}
           </View>
           <Text
-            style={[TEXT_STYLES.FI2, styles.secondaryText, styles.whiteText]}>
+            style={[Platform.OS == 'android' ? TEXT_STYLES.H3 :TEXT_STYLES.H4, styles.secondaryText, styles.whiteText]}>
             {`${STRINGS.CONTINUE_WITH} ${button.title}`}
           </Text>
         </Pressable>
@@ -121,12 +122,14 @@ const LoginSignup = () => {
             {STRINGS.QUICK_EASY}
           </Text>
         </Animated.View>
+        <View style={{justifyContent:"space-between",flex:1}}>
         <Animated.View
           style={[
             styles.animationContainer,
             {opacity: fadeAnim, ...(isIpad() ? {marginTop: 30} : {})},
           ]}>
           <ScreenAnimation />
+          {/* <IconAnimation/> */}
         </Animated.View>
 
         <View style={styles.buttonContainer}>
@@ -141,7 +144,7 @@ const LoginSignup = () => {
                     opacity: pressed ? 0.8 : 1,
                   },
                 ]}>
-                <Text style={[TEXT_STYLES.FI2, styles.buttonText]}>
+                <Text style={[Platform.OS == 'android' ? TEXT_STYLES.H3 :TEXT_STYLES.H4, styles.buttonText]}>
                   {STRINGS.SIGNUP}
                 </Text>
               </Pressable>
@@ -161,7 +164,7 @@ const LoginSignup = () => {
             ]}>
             <Animated.Text
               style={[
-                TEXT_STYLES.FI2,
+                Platform.OS == 'android' ? TEXT_STYLES.H3 :TEXT_STYLES.H4,
                 styles.whiteText,
                 styles.secondaryText,
                 animatedButtonStyle,
@@ -169,6 +172,7 @@ const LoginSignup = () => {
               {STRINGS.LOGIN}
             </Animated.Text>
           </Pressable>
+        </View>
         </View>
       </View>
     </SafeAreaView>

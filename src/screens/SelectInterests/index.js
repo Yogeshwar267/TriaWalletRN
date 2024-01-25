@@ -102,7 +102,7 @@ const InterestSelection = () => {
   useEffect(() => {
     navigation.setOptions({
       headerTitleAlign: 'center',
-      headerRight: ({}) => (
+      headerRight: () => (
         <Pressable style={styles.xpContainer} hitSlop={_scaleText(26).fontSize}>
           <View style={styles.sparkles}>
             {ICONS.SPARKLES(
@@ -133,7 +133,7 @@ const InterestSelection = () => {
         stops={[0, 1]}
         center={[W * 0.5, H * 0.7]}
         radius={300}></Radial>
-      <Animated.View style={[customStyling.subContainer, {opacity: fadeAnim}]}>
+      <Animated.View style={[styles.subContainer, {opacity: fadeAnim}]}>
         <IdentityCardSvg startColor={'#101010'} stopColor={'#101010'} />
         <View style={[styles.profileContainer]}>
           <View

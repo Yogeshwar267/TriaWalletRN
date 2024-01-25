@@ -5,7 +5,7 @@ import {PersistGate} from 'redux-persist/lib/integration/react';
 import {store, persistor} from './redux/store';
 import ApplicationNavigator from './navigators/Application';
 import './translations';
-import {KeyboardAvoidingView, View} from 'react-native';
+import { View} from 'react-native';
 import KeyboardAwareView from './components/molecules/keyboardAwareView';
 import {SheetProvider} from 'react-native-actions-sheet';
 import SplashScreen from 'react-native-splash-screen';

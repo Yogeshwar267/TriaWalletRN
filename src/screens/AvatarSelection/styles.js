@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf:"center",
   },
   whiteText: {
     color: '#fff',
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
     ...(isTablet() && Platform.OS == 'android' ? {marginLeft: 10} : {marginLeft: 5})
   },
   regeneratePressable: {
-    width: _scaleText(W * (isTablet() ? 0.45 : Platform.OS == 'android' ? 0.6 : 0.6)).fontSize,
+    width: _scaleText(W * (isTablet() ? 0.45 : 0.6)).fontSize,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection:"row",
@@ -217,7 +218,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
   },
@@ -251,10 +251,11 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     width: W,
-    height: H * (Platform.OS == "ios" ? 0.48 : 0.45),
+    height: _scaleText(H * (Platform.OS == "ios" ? 0.47 : 0.494)).fontSize,
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
+    alignSelf:"center",
   },
 });
 

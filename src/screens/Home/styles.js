@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   xpContainer: {
-    borderWidth: isTablet() ? 2 : Platform.OS == 'android' ? 1 : 1,
+    borderWidth: isTablet() ? 2 : 1,
     borderColor: 'rgba(211, 184, 44, 1)',
     flexDirection: 'row',
     alignItems: 'center',

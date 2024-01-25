@@ -1,16 +1,9 @@
-import {
-  Animated,
-  Dimensions,
-  Platform,
-  View,
-} from 'react-native';
+import {Animated, Dimensions, Platform, View} from 'react-native';
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {CREATE_PROFILE} from '../../shared';
 import {_scaleText} from '../../shared/services/utility';
 import styles from './styles';
-import {
-  useNavigation,
-} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {NAVIGATION_SCREENS} from '../../navigators/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUserDetails} from '../../redux/actions/common';
@@ -21,7 +14,7 @@ import RadialGradient from '../../components/molecules/radialGradient';
 import DropShadow from 'react-native-drop-shadow';
 import ProfileDots from '../../components/atoms/CustomCorousel/ProfileDots';
 import customStyling from '../../shared/services/styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const AvatarSelection = () => {
   const navigation = useNavigation();
@@ -61,7 +54,7 @@ const AvatarSelection = () => {
         avatar: profileConfigurations[selectedValue],
       }),
     );
-    navigation.navigate(NAVIGATION_SCREENS.IDENTITY_SELECTION)
+    navigation.navigate(NAVIGATION_SCREENS.IDENTITY_SELECTION);
   };
 
   useEffect(() => {
@@ -135,10 +128,12 @@ const AvatarSelection = () => {
         stops={[0, 1]}
         center={[W * 0.5, H * 0.7]}
         radius={300}></Radial>
-
-      <Animated.View style={[styles.subContainer, {opacity: fadeAnim}]}>
-        {renderItem(profileConfigurations[selectedValue])}
-      </Animated.View>
+      <View style={styles.profileContainer}>
+        <Animated.View
+          style={[styles.subContainer, {opacity: fadeAnim}]}>
+          {renderItem(profileConfigurations[selectedValue])}
+        </Animated.View>
+      </View>
       <AvatarActionSheet
         setSelectedValue={setSelectedValue}
         onNext={onNext}

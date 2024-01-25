@@ -7,12 +7,12 @@ import {
   Platform,
   Pressable,
   Easing,
+  Animated
 } from 'react-native';
 import styles from './styles';
 import {TEXT_STYLES} from '../../../shared/constants/styles';
 import {ICONS} from '../../../shared/constants/icons';
 import {_scaleText} from '../../../shared/services/utility';
-import {Animated} from 'react-native';
 import { isTablet } from 'react-native-device-info';
 
 const CustomTextField = ({

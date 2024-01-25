@@ -154,7 +154,7 @@ const CreateTriaName = () => {
             containerStyle={{marginBottom: _scaleText(25).fontSize}}
             isRightText={true}
             subText={`@${STRINGS.TRIA}`}
-            maxlength={12}
+            maxlength={6}
           />
 
           {username.length > 3 ? (

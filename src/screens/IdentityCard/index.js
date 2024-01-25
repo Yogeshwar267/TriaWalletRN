@@ -131,7 +131,7 @@ const IdentityCard = () => {
                     : isTablet()
                     ? 10
                     : Platform.OS == 'android'
-                    ? 10.5
+                    ? 11
                     : 8,
                 ).fontSize
               }
